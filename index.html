@@ -51,7 +51,7 @@ function ThumbnailSlider(e){var g="length",i="className",R=function(a,c){var b=a
 		vertical-align:bottom;
 	}
 	
-	.mobile{
+	#mobile{
 		display:none;
 	}
 	
@@ -60,6 +60,10 @@ function ThumbnailSlider(e){var g="length",i="className",R=function(a,c){var b=a
 <style type="text/css" media="only screen and (max-device-width: 1136px)">
 	.middle, .bottom, .div2{
 		display:none;
+	}
+	
+	#mobile{
+		display:block;
 	}
 	
 	.mobile{
@@ -76,13 +80,14 @@ function ThumbnailSlider(e){var g="length",i="className",R=function(a,c){var b=a
 <div>
 <img src="http://i.imgur.com/n4L45wm.jpg" width="100%"/><br />
 </div>
-
+	
+<div id="mobile">
 	<img class="mobile" src="http://i.imgur.com/5SszmoF.jpg?3" width="95%"/><br /><br />
 	<img class="mobile" src="http://i.imgur.com/D1JWcpR.jpg?3" width="95%"/><br /><br />
 	<img class="mobile" src="http://i.imgur.com/csgrQ1R.jpg?3" width="95%"/><br /><br />
 	<img class="mobile" src="http://i.imgur.com/l0whN48.jpg?3" width="95%"/><br /><br />
 	<img class="mobile" src="http://i.imgur.com/LSrCgN4.jpg?3" width="95%"/><br /><br />
-
+</div>
     <div class="div2">
         <div id="mcts1">
             <img src="http://www.globalpovertyproject.com/citizentickets/images/alabamashakes.jpg" />
