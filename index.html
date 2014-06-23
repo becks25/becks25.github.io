@@ -46,7 +46,7 @@
 	#essentials{
 		margin-left:25%;
 		margin-right:25%;
-		border: blue solid 2px;
+		border: #19AECF solid 2px;
 		padding:5px;
 	}
 	
@@ -56,7 +56,7 @@
 		
 	}
 	
-	#bono1, #hans1{
+	#bono1, #hans1, #simon1{
 		display:block;
 	}
 	
@@ -330,7 +330,7 @@
 </div>
 
 
-	<!--Hans Rosling video & quiz-->
+<!--Hans Rosling video & quiz-->
 <div id="hans">
 
 	<!--video-->
@@ -473,81 +473,143 @@
 
 </div>
 
-<div class="errorbox-good" role="listitem">
-<div dir="ltr" class="ss-item  ss-embeddable-object-container"><div class="ss-form-entry">
-<h2 class="ss-q-title"></h2>
-<div style="text-align: center;">
-<iframe class="ss-video" src="//youtube.com/embed/Go4Xsd53Qqw" style="width: 360px; height: 273px;"></iframe>
+<!--Simon video & quiz-->
+<div id="simon">
+	<div class="errorbox-good" role="listitem">
+	<center><h2 class="ss-q-title">Simon Moss Video</h2></center>
+		<div style="text-align: center;">
+			<iframe class="video" src="//youtube.com/embed/Go4Xsd53Qqw"></iframe>
+		</div>
+
+	</div>
+ 
+	
+	<!--simon q1-->
+	<div id="simon1" class="simon question 1">
+	<div class="ss-form-question errorbox-good" role="listitem">
+		<label class="ss-q-item-label" for="entry_1143687457">
+			<div class="ss-q-title">Question 1
+			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+			</div>
+		</label>
+	</div>
+
+	<!--simon1-->
+	<ul class="ss-choices" role="radiogroup" aria-label="Question 1  ">
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 1" id="group_1182868116_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 1</span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 2" id="group_1182868116_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 2</span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 3" id="group_1182868116_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 3</span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 4" id="group_1182868116_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 4</span>
+</label></li>
+	</ul>
+		<br />
+		<div class="next" onclick="next('simon2', 'simon1')">Next</div>
 </div>
-</div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
-<div dir="ltr" class="ss-item ss-item-required ss-radio"><div class="ss-form-entry">
-<label class="ss-q-item-label" for="entry_1143687457"><div class="ss-q-title">Question 1
-<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
-<span class="ss-required-asterisk">*</span></div>
-<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+	
+	<!--simon q2-->
+	<div id="simon2" class="question simon 2">
 
-<ul class="ss-choices" role="radiogroup" aria-label="Question 1  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 1" id="group_1182868116_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 1</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 2" id="group_1182868116_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 2</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 3" id="group_1182868116_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 3</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1182868116" value="Option 4" id="group_1182868116_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 4</span>
-</label></li></ul>
-<div class="error-message" id="1143687457_errorMessage"></div>
-<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
-<div dir="ltr" class="ss-item ss-item-required ss-radio"><div class="ss-form-entry">
-<label class="ss-q-item-label" for="entry_1270939115"><div class="ss-q-title">Question 2
-<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
-<span class="ss-required-asterisk">*</span></div>
-<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+	<div class="ss-form-question errorbox-good" role="listitem">
+		<label class="ss-q-item-label" for="entry_1270939115">
+			<div class="ss-q-title">Question 2
+			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+			</div>
+		</label>
+	</div>
 
-<ul class="ss-choices" role="radiogroup" aria-label="Question 2  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 1" id="group_586917750_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
+	<!--simon2 answers-->
+	<ul class="ss-choices" role="radiogroup" aria-label="Question 2  ">
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 1" id="group_586917750_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 1</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 2" id="group_586917750_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 2" id="group_586917750_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 2</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 3" id="group_586917750_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 3" id="group_586917750_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 3</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 4" id="group_586917750_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.586917750" value="Option 4" id="group_586917750_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 4</span>
-</label></li></ul>
-<div class="error-message" id="1270939115_errorMessage"></div>
-<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
-<div dir="ltr" class="ss-item ss-item-required ss-radio"><div class="ss-form-entry">
-<label class="ss-q-item-label" for="entry_860826773"><div class="ss-q-title">Question 3
-<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
-<span class="ss-required-asterisk">*</span></div>
-<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+</label></li>
+	</ul>
+	<br />
+	<div class="next" onclick="next('simon3', 'simon2')">Next</div>
+	<div class="next" onclick="next('simon1', 'simon2')">Back</div>
+</div>
 
-<ul class="ss-choices" role="radiogroup" aria-label="Question 3  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 1" id="group_1818090153_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 1</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 2" id="group_1818090153_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 2</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 3" id="group_1818090153_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 3</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 4" id="group_1818090153_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
-<span class="ss-choice-label">Option 4</span>
-</label></li></ul>
-<div class="error-message" id="860826773_errorMessage"></div>
-<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
-<div dir="ltr" class="ss-item ss-item-required ss-radio"><div class="ss-form-entry">
-<label class="ss-q-item-label" for="entry_790351681"><div class="ss-q-title">Question 4
-<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
-<span class="ss-required-asterisk">*</span></div>
-<div class="ss-q-help ss-secondary-text" dir="ltr"></div></label>
+	<!--simon q3-->
+	<div id="simon3" class="question simon 3">
 
-<ul class="ss-choices" role="radiogroup" aria-label="Question 4  "><li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 1" id="group_203273933_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
+	<div class="ss-form-question errorbox-good" role="listitem">
+		<label class="ss-q-item-label" for="entry_860826773">
+			<div class="ss-q-title">Question 3
+			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+			</div>
+		</label>
+	</div>
+	
+	<!--simon3 answers-->
+
+	<ul class="ss-choices" role="radiogroup" aria-label="Question 3  ">
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 1" id="group_1818090153_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 1</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 2" id="group_203273933_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 2" id="group_1818090153_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 2</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 3" id="group_203273933_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 3" id="group_1818090153_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 3</span>
-</label></li> <li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 4" id="group_203273933_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1818090153" value="Option 4" id="group_1818090153_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
 <span class="ss-choice-label">Option 4</span>
-</label></li></ul>
-<div class="error-message" id="790351681_errorMessage"></div>
-<div class="required-message">This is a required question</div></div></div></div> <div class="ss-form-question errorbox-good" role="listitem">
+</label></li>
+	</ul>
+	<br />
+	<div class="next" onclick="next('simon4', 'simon3')">Next</div>
+	<div class="next" onclick="next('simon2', 'simon3')">Back</div>
+
+</div>
+ 
+	<!--simon q4-->
+	<div id="simon4" class="question simon 4">
+	<div class="ss-form-question errorbox-good" role="listitem">
+		<label class="ss-q-item-label" for="entry_790351681">
+			<div class="ss-q-title">Question 4
+			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+			</div>
+		</label>
+	</div>
+
+	<!--simon4 answers-->
+	<ul class="ss-choices" role="radiogroup" aria-label="Question 4  ">
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 1" id="group_203273933_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 1</span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 2" id="group_203273933_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 2</span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 3" id="group_203273933_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 3</span>
+</label></li> 
+		<li class="ss-choice-item"><label><span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.203273933" value="Option 4" id="group_203273933_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
+<span class="ss-choice-label">Option 4</span>
+</label></li>
+	</ul>
+	<br />
+	<div class="next" onclick="next('simon3', 'simon4')">Back</div>
+
+</div>
+
+</div>
+
+<div class="ss-form-question errorbox-good" role="listitem">
 <div dir="ltr" class="ss-item ss-item-required ss-paragraph-text"><div class="ss-form-entry">
 <label class="ss-q-item-label" for="entry_605326710"><div class="ss-q-title">Essay 1
 <label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
