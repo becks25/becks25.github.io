@@ -110,11 +110,14 @@
 		//check if email is filled in (and is actually an email address)
 		var email=document.getElementById('entry_10226902');
 		if(email.value==""){
+			done="no";
 			star=document.getElementById('emailbad');
 			star.style.display='inline-block';
 		}else{
 			okay =email.value.match(/.*^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$.*/)
 			if(okay==null){
+				done="no";
+
 				star=document.getElementById('emailbad');
 				star.style.display='inline-block';
 			}
@@ -124,6 +127,8 @@
 		//check if phonenumber is filled & okay
 		var phone=document.getElementById('entry_1328801782');
 		if(phone.value==""){
+			done="no";
+
 			star=document.getElementById('phonebad');
 			star.style.display='inline-block';
 		}else{
@@ -131,6 +136,7 @@
 			if(okay==null){
 				star=document.getElementById('phonebad');
 				star.style.display='inline-block';
+				done="no"
 			}
 		}	
 	
@@ -138,6 +144,8 @@
 		//check address
 		var phone=document.getElementById('entry_482493435');
 		if(phone.value==""){
+			done="no";
+
 			star=document.getElementById('addressbad');
 			star.style.display='inline-block';
 		}
