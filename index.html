@@ -70,6 +70,10 @@
 	.next{
 		text-align:center;
 	}
+	
+	#quiz{
+		display:none;
+	}
 </style>
 
 
@@ -82,6 +86,73 @@
 		
 	}
 	
+	function validate_essentials(){
+		//clear all asterisks out of the way
+		$('.ss-required-asterisk').css('display','none');
+		var done="";
+		
+		//check if first name is filled in
+		var fname= document.getElementById('entry_307233278');
+		if(fname.value==""){
+			done="no";
+			star=document.getElementById('fnamebad');
+			star.style.display='inline-block';
+		}
+		
+		//check if last name is filled in
+		var lname= document.getElementById('entry_1426570138');
+		if(lname.value==""){
+			done="no";
+			star=document.getElementById('lnamebad');
+			star.style.display='inline-block';
+		}
+		
+		//check if email is filled in (and is actually an email address)
+		var email=document.getElementById('entry_10226902');
+		if(email.value==""){
+			star=document.getElementById('emailbad');
+			star.style.display='inline-block';
+		}else{
+			okay =email.value.match(/.*^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$.*/)
+			if(okay==null){
+				star=document.getElementById('emailbad');
+				star.style.display='inline-block';
+			}
+		}
+		
+		
+		//check if phonenumber is filled & okay
+		var phone=document.getElementById('entry_1328801782');
+		if(phone.value==""){
+			star=document.getElementById('phonebad');
+			star.style.display='inline-block';
+		}else{
+			okay =phone.value.match(/.*^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$.*/)
+			if(okay==null){
+				star=document.getElementById('phonebad');
+				star.style.display='inline-block';
+			}
+		}	
+	
+	
+		//check address
+		var phone=document.getElementById('entry_482493435');
+		if(phone.value==""){
+			star=document.getElementById('addressbad');
+			star.style.display='inline-block';
+		}
+		
+		
+		//if there are no errors, continue
+		if(done==""){
+			essentials=document.getElementById('essentials');
+			essentials.style.display='none';
+			
+			quiz=document.getElementById('quiz');
+			quiz.style.display='block';
+		}
+		
+	}
 </script>
 
 <h1 class="ss-form-title" dir="ltr">Stefan example</h1>
@@ -97,95 +168,103 @@
 <ol role="list" class="ss-question-list" style="padding-left: 0">
 
 <!--essentials begin-->
-<center>
 <div id="essentials" class="box">
-
+	<table>
+	
+	<tr>
 	<!--first name-->
 	<div class="ss-form-question errorbox-good" role="listitem">
-		<label class="ss-q-item-label" for="entry_307233278">
+		<td><label class="ss-q-item-label" for="entry_307233278">
 			<div class="ss-q-title">First Name
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
 
 
-		</label>
-
+		</label></td>
 	<!--first name input box-->
-	<input type="text" name="entry.307233278" value="" class="ss-q-short" id="entry_307233278" dir="auto" aria-label="First Name  " aria-required="true" required="" title="">
-
+	<td><input type="text" name="entry.307233278" value="" class="ss-q-short" id="entry_307233278" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""></td><td><div class="ss-required-asterisk" id="fnamebad">*</div></td>
 
 	</div> 
-
+	</tr>
 	<!--last name-->
 
 	<div class="ss-form-question errorbox-good" role="listitem">
-
+	<tr>
 	<br />
-		<label class="ss-q-item-label" for="entry_1426570138">
+		<td><label class="ss-q-item-label" for="entry_1426570138">
 			<div class="ss-q-title">Last Name
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
-		</label>
+		</label></td>
 		
 	<!--last name input box-->
-	<input type="text" name="entry.1426570138" value="" class="ss-q-short" id="entry_1426570138" dir="auto" aria-label="Last Name  " aria-required="true" required="" title="">
+	<td><input type="text" name="entry.1426570138" value="" class="ss-q-short" id="entry_1426570138" dir="auto" aria-label="Last Name  " aria-required="true" required="" title=""></td><td><div class="ss-required-asterisk" id="lnamebad">*</div></td>
+	</tr>
 	</div> 
 	
 	
 	<!--email address-->
 	<div class="ss-form-question errorbox-good" role="listitem">
-
+	<tr>
 	<br />
 
-		<label class="ss-q-item-label" for="entry_10226902">
+		<td><label class="ss-q-item-label" for="entry_10226902">
 			<div class="ss-q-title">Email Address
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
-		</label>
+		</label></td>
 		
 	<!--email input box-->
-	<input type="text" name="entry.10226902" value="" class="ss-q-short" id="entry_10226902" dir="auto" aria-label="Email Address  Please enter a valid email address" aria-required="true" required="" pattern=".*^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$.*" title="Please enter a valid email address">
+	<td><input type="text" name="entry.10226902" value="" class="ss-q-short" id="entry_10226902" dir="auto" aria-label="Email Address  Please enter a valid email address" aria-required="true" required="" pattern=".*^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$.*" title="Please enter a valid email address"></td><td><div class="ss-required-asterisk" id="emailbad">*Please enter a valid email address</div></td>
+	</tr>
+
 	</div> 
 
 
 	<!--phonenumber-->
 	<div class="ss-form-question errorbox-good" role="listitem">
-
+	<tr>
 	<br />
-		<label class="ss-q-item-label" for="entry_1328801782">
+		<td><label class="ss-q-item-label" for="entry_1328801782">
 			<div class="ss-q-title">Phone Number
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
-		</label>
+		</label></td>
 	
 	<!--phone number input box-->
-	<input type="text" name="entry.1328801782" value="" class="ss-q-short" id="entry_1328801782" dir="auto" aria-label="Phone Number  Please enter a valid email address" aria-required="true" required="" pattern=".*^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$.*" title="Please enter a valid email address">
+	<td><input type="text" name="entry.1328801782" value="" class="ss-q-short" id="entry_1328801782" dir="auto" aria-label="Phone Number  Please enter a valid email address" aria-required="true" required="" pattern=".*^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$.*" title="Please enter a valid email address"></td><td><div class="ss-required-asterisk" id="phonebad">*Please enter a valid phonenumber</div></td>
+	</tr>
+
 	</div> 
 
 
 	<!--address-->
 	<div class="ss-form-question errorbox-good" role="listitem">
-
+	<tr>
 	<br />
-		<label class="ss-q-item-label" for="entry_482493435">
+		<td><label class="ss-q-item-label" for="entry_482493435">
 			<div class="ss-q-title">Address
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
-		</label>
+		</label></td>
 		
 	<!--address textarea-->
-	<textarea name="entry.482493435" rows="8" cols="60" class="ss-q-long" id="entry_482493435" dir="auto" aria-label="Address  " aria-required="true" required=""></textarea>
-
+	<td><textarea name="entry.482493435" rows="8" cols="60" class="ss-q-long" id="entry_482493435" dir="auto" aria-label="Address  " aria-required="true" required=""></textarea></td><td><div class="ss-required-asterisk" id="addressbad">*</div></td>
+	</tr>
 	</div>
+	
+	</table>
+
+<div onclick="validate_essentials()" style="text-align:center;">Enter</div>
+
 
 </div>
 
-</center>
 
 <!--end essentials-->
 
 
-
+<div id="quiz">
 <!--bono video & quiz-->
 <div id="bono" class="box">
 	<div class="errorbox-good" role="listitem">
@@ -643,7 +722,6 @@
 
 
 
-
 <input type="hidden" name="draftResponse" value="[,,&quot;4029434368008000806&quot;]
 ">
 <input type="hidden" name="pageHistory" value="0">
@@ -654,7 +732,11 @@
 <div class="ss-item ss-navigate"><table id="navigation-table"><tbody><tr><td class="ss-form-entry goog-inline-block" id="navigation-buttons" dir="ltr">
 <input type="submit" name="submit" value="Submit" id="ss-submit">
 </td>
-</tr></tbody></table></div></ol></form></div>
+</tr></tbody></table></div>
+</div>
+</ol>
+
+</form></div>
 <div class="ss-footer"><div class="ss-attribution"></div>
 <div class="ss-legal"><div class="disclaimer-separator"></div>
 <div class="disclaimer" dir="ltr">
