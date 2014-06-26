@@ -1,0 +1,355 @@
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+<script>
+	function choose(question, option, id){
+
+		q=document.getElementsByName(question);
+		q[option].checked=true;
+
+		others= [];
+		
+		others=document.getElementsByClassName(question);
+		for(var i=others.length-1; i>=0; i--){
+			others[i].style.opacity="0.4";
+		}
+		
+		selected=document.getElementById(id);
+		selected.style.opacity="1";
+	}
+</script>
+
+<script>
+	function dynamicValidate() {
+		$('.answer_option').css('display','none');
+	    var ready = "yes";
+
+
+	// validate points
+		p = document.form1.points;
+		if(p[p.length-1].checked==true){
+			ready="no";
+		}
+		
+	// validate issue
+		iss = document.form1.issue;
+		if(iss[iss.length-1].checked==true){
+			ready="no";
+		}
+	
+	// validate action
+		a = document.form1.action;
+		if(a[a.length-1].checked==true){
+			ready="no";
+		}
+
+	// validate content
+		c = document.form1.content;
+		if(c[c.length-1].checked==true){
+			ready="no";
+		}
+	
+	// validate pic
+		pic = document.form1.pic;
+		if(pic[pic.length-1].checked==true){
+			ready="no";
+		}
+		
+	// validate hashtag
+		h = document.form1.hashtag;
+		if(h[h.length-1].checked==true){
+			ready="no";
+		}
+		
+	// validate band
+		b = document.form1.band;
+		if(b[b.length-1].checked==true){
+			ready="no";
+		}
+		
+	// validate why
+		y = document.form1.why;
+		if(y[y.length-1].checked==true){
+			ready="no";
+		}
+		
+		if(ready=="yes"){
+			result=quizAnswer();
+			if(result>50){
+				document.getElementById("option0").style.display="block";
+			}else if(result>40){
+				document.getElementById("option1").style.display="block";
+			}else if(result>30){
+				document.getElementById("option2").style.display="block";
+			}else if(result>20){
+				document.getElementById("option3").style.display="block";
+			}else if(result>10){
+				document.getElementById("option4").style.display="block";
+			}else{
+				$("#option5").slideDown();
+			}
+		}
+
+	}
+	
+	function quizAnswer(){
+		var score=60;
+		
+		//points
+		p = document.form1.points;
+		for(var i =p.length-1; i>=0; i--){
+			if(p[i].checked==true){
+				temp_score=i*10;
+				score=score-temp_score;
+			}
+		}
+		
+		a=document.form1.action;
+		for(var i = a.length-1; i>=0; i--){
+			if(a[i].checked==true){
+				if(i == 5){
+					score=score-5;
+				}else{
+					score=score-2;
+				}
+			}
+		}
+		
+		pic = document.form1.pic;
+		for(var i=pic.length-1; i>=0; i--){
+			if(pic[i].checked==true){
+				if(i==5){
+					score=score-2;
+				}else{
+					score=score-1;
+				}
+			}
+		}
+		
+		h = document.form1.pic;
+		for(var i=h.lenght-1; i>=0; i--){
+			if(h[i].checked==true){
+				if(i==4){
+					score=score-1;
+				}else if(i==0){
+					score=score-3;
+				}else{
+					score=score-2;	
+				}
+			}
+		}
+		
+		return score;
+	
+	}
+
+</script>
+
+
+<style>
+	.answer_block{
+		width:70%;
+		text-align:center;
+		margin-left:16%;
+	}
+	
+	.answer{
+		width:29%;
+		display:inline-block;
+		padding:1%;
+		background:white;
+		height:auto;
+		
+	}
+	
+	.answer:hover{
+		opacity:0.6;
+	}
+
+	
+	.radio_button{
+		display:none;
+	}
+	
+	.hashtag{
+		border-radius: 10px;
+	}
+	
+	h2{
+		clear:both;
+	}
+	
+	.answer_option{
+		display:none;
+	}
+	
+	.result{
+		text-align:center;
+		align:center;
+		width:90%;
+	}
+</style>
+
+<img src="http://i.imgur.com/o4zgZxy.png" style="width:100%;"/>
+
+<center style="border-bottom:2px solid black;"><br />
+<h3>Answer the questions below to find out what kind of Global Citizen you are!</h3>
+
+</center>
+
+	<form name=form1>
+	
+	<h2><br />1. How many Global Citizen points to you have?</h2>
+
+	<div class="answer_block">
+		<input type="radio" name=points value="0" class="radio_button" ><img onclick="choose('points', 0, 'points0'); dynamicValidate();" id="points0" class="answer points" src="http://i.imgur.com/nCxPyZS.png" /></input>
+		<input type="radio" name=points value="10" class="radio_button" ><img onclick="choose('points', 1, 'points1'); dynamicValidate();" id="points1" class="answer points" src="http://i.imgur.com/KIByoSx.png"/></input>
+		<input type="radio" name=points value="20" class="radio_button" ><img onclick="choose('points', 2, 'points2'); dynamicValidate();" id="points2" class="answer points" src="http://i.imgur.com/q6mA4zy.png"/></input><br />
+		<input type="radio" name=points value="50" class="radio_button" ><img onclick="choose('points', 3, 'points3'); dynamicValidate();" id="points3" class="answer points" src="http://i.imgur.com/5PWkRKv.png"/></input>
+		<input type="radio" name=points value="100" class="radio_button" ><img onclick="choose('points', 4, 'points4'); dynamicValidate();" id="points4" class="answer points" src="http://i.imgur.com/zvKz7Va.png"/></input>
+		<input type="radio" name=points value="200" class="radio_button" ><img onclick="choose('points', 5, 'points5'); dynamicValidate();" id="points5" class="answer points" src="http://i.imgur.com/Qe3fFiw.png"/></input>
+		<input type="radio" name=points value="holder" class="radio_button" checked></input>
+	</div>
+	<h2><br />2. Which issue area is most important to you?</h2>
+
+	<div class="answer_block">
+		<!--Water-->
+		<input class="radio_button" type="radio" name="issue" value="water"><img onclick="choose('issue', 0, 'issue0'); dynamicValidate();;" id="issue0" class="answer issue" src="http://i.imgur.com/ZGhwb2c.png"/></input>
+		<!--Education-->
+		<input class="radio_button" type="radio" name="issue" value="education"><img onclick="choose('issue', 1, 'issue1'); dynamicValidate();" id="issue1" class="answer issue" src="http://i.imgur.com/JFVk6Ba.png"/></input>
+		<!--Health-->
+		<input class="radio_button" type="radio" name="issue" value="health"><img onclick="choose('issue', 2, 'issue2'); dynamicValidate();" id="issue2" class="answer issue" src="http://i.imgur.com/2YPKAO3.jpg"/></input>
+		<!--Food-->
+		<br /><input class="radio_button" type="radio" name="issue" value="food"><img onclick="choose('issue', 3, 'issue3'); dynamicValidate();" id="issue3" class="answer issue" src="http://i.imgur.com/Uq6zNZK.png"/></input>
+		<!--Innovation-->
+		<input class="radio_button" type="radio" name="issue" value="innovation"><img onclick="choose('issue', 4, 'issue4'); dynamicValidate();" id="issue4" class="answer issue" src="http://i.imgur.com/Zzy9j54.png"/></input>
+		<!--Vaccines-->
+		<input class="radio_button" type="radio" name="issue" value="vaccines"><img onclick="choose('issue', 5, 'issue5'); dynamicValidate();" id="issue5" class="answer issue" src="http://i.imgur.com/2Vk6iog.png"/></input>
+		<!--Sustainability-->
+		<br /><input class="radio_button" type="radio" name="issue" value="sustainability"><img onclick="choose('issue', 6, 'issue6'); dynamicValidate();" id="issue6" class="answer issue" src="http://i.imgur.com/nvH3G16.png"/></input>
+		<!--Women-->
+		<input class="radio_button" type="radio" name="issue" value="women"><img onclick="choose('issue', 7, 'issue7'); dynamicValidate();" id="issue7" class="answer issue" src="http://i.imgur.com/OMrqUbL.png"/></input>
+		<!--governance
+		<input class="radio_button" type="radio" name="issue" value="gov"><img onclick="choose('issue', 8, 'issue8'); dynamicValidate();" id="issue8" class="answer issue" src="http://i.imgur.com/BTCSd0H.jpg"/></input>-->
+		<!--place holder-->
+		<input class="radio_button" type="radio" name="issue" value="holder" checked></input>
+
+	</div>
+
+	<h2><br />3. What's your favorite kind of action to take?</h2>
+
+	<div class="answer_block">
+		<input class="radio_button" type="radio" name="action" value="petition"><img onclick="choose('action', 0, 'action0'); dynamicValidate();" id="action0" class="answer action" src="http://i.imgur.com/3oQ0OoP.png"/></input>
+		<input class="radio_button" type="radio" name="action" value="email"><img onclick="choose('action', 1, 'action1'); dynamicValidate();" id="action1" class="answer action" src="http://i.imgur.com/TKYPFKR.png"/></input>
+		<input class="radio_button" type="radio" name="action" value="call"><img onclick="choose('action', 2, 'action2'); dynamicValidate();" id="action2" class="answer action" src="http://i.imgur.com/R7Enp5C.png"/></input>
+		<br /><input class="radio_button" type="radio" name="action" value="volunteer"><img onclick="choose('action', 3, 'action3'); dynamicValidate();" id="action3" class="answer action" src="http://i.imgur.com/RLysUJv.png"/></input>
+		<input class="radio_button" type="radio" name="action" value="quiz"><img onclick="choose('action', 4, 'action4'); dynamicValidate();" id="action4" class="answer action" src="http://i.imgur.com/n7LnUh2.png"/></input>
+		<input class="radio_button" type="radio" name="action" value="all"><img onclick="choose('action', 5, 'action5'); dynamicValidate();" id="action5" class="answer action" src="http://i.imgur.com/lYSfsPO.png"/></input>
+		<input class="radio_button" type="radio" name="action" value="holder" checked></input>
+	
+	</div>
+
+	<h2><br />4. What kind of content do you like most?</h2>
+
+	<div class="answer_block">
+		<input class="radio_button" type="radio" name="content" value="video"><img onclick="choose('content', 0, 'content0');  dynamicValidate();" id="content0" class="answer content" src="http://i.imgur.com/EEyzBlm.jpg"/></input>
+		<input class="radio_button" type="radio" name="content" value="slideshow"><img onclick="choose('content', 1, 'content1'); dynamicValidate();" id="content1" class="answer content" src="http://i.imgur.com/aQsy124.jpg"/></input>
+		<input class="radio_button" type="radio" name="content" value="article"><img onclick="choose('content', 2, 'content2'); dynamicValidate();" id="content2" class="answer content" src="http://i.imgur.com/83R16DP.jpg"/></input>
+		<br /><input class="radio_button" type="radio" name="content" value="listicle"><img onclick="choose('content', 3, 'content3'); dynamicValidate();" id="content3" class="answer content" src="http://i.imgur.com/wK50agJ.jpg"/></input>
+		<input class="radio_button" type="radio" name="content" value="infographic"><img onclick="choose('content', 4, 'content4'); dynamicValidate();" id="content4" class="answer content" src="http://i.imgur.com/3JsmWPm.jpg"/></input>
+		<input class="radio_button" type="radio" name="content" value="wins"><img onclick="choose('content', 5, 'content5'); dynamicValidate();" id="content5" class="answer content" src="http://i.imgur.com/th3HB7o.jpg"/></input>
+		<input class="radio_button" type="radio" name="content" value="holder" checked></input>
+
+	</div>
+
+	<h2><br />5. Choose your favorite pic</h2>
+
+	<div class="answer_block">
+		<input class="radio_button" type="radio" name="pic" value="princess"><img onclick="choose('pic', 0, 'pic0'); dynamicValidate();" id="pic0" class="answer pic" src="http://i.imgur.com/7UFskRj.jpg"/></input>
+		<input class="radio_button" type="radio" name="pic" value="will.i.am"><img onclick="choose('pic', 1, 'pic1'); dynamicValidate();" id="pic1" class="answer pic" src="http://i.imgur.com/OCM78BX.jpg"/></input>
+		<input class="radio_button" type="radio" name="pic" value="bono"><img onclick="choose('pic', 2, 'pic2'); dynamicValidate();" id="pic2" class="answer pic" src="http://i.imgur.com/JnUeSY4.jpg"/></input>
+		<br /><input class="radio_button" type="radio" name="pic" value="katieholmes"><img onclick="choose('pic', 3, 'pic3'); dynamicValidate();" id="pic3" class="answer pic" src="http://i.imgur.com/z7cwk5d.jpg"/></input>
+		<input class="radio_button" type="radio" name="pic" value="gerardbutler"><img onclick="choose('pic', 4, 'pic4'); dynamicValidate();" id="pic4" class="answer pic" src="http://i.imgur.com/bVLcX4U.jpg"/></input>
+		<input class="radio_button" type="radio" name="pic" value="gcs"><img onclick="choose('pic', 5, 'pic5'); dynamicValidate();" id="pic5" class="answer pic" src="http://i.imgur.com/DkuDh37.jpg"/></input>
+		<input class="radio_button" type="radio" name="pic" value="holder" checked></input>
+	
+	</div>
+
+	<h2><br />6. Choose a hashtag</h2>
+
+	<div class="answer_block">
+
+		<input class="radio_button" type="radio" name="hashtag" value="globalcitizen"><img onclick="choose('hashtag', 0, 'hashtag0'); dynamicValidate();" id="hashtag0" class="answer hashtag" src="http://i.imgur.com/IyR9GIC.png"/></input>
+		<input class="radio_button" type="radio" name="hashtag" value="zp2030"><img onclick="choose('hashtag', 1, 'hashtag1'); dynamicValidate();" id="hashtag1" class="answer hashtag" src="http://i.imgur.com/y6QIwQL.png"/></input>
+		<input class="radio_button" type="radio" name="hashtag" value="lbl"><img onclick="choose('hashtag', 2, 'hashtag2'); dynamicValidate();" id="hashtag2" class="answer hashtag" src="http://i.imgur.com/amT3h57.png"/></input>
+		<br /><input class="radio_button" type="radio" name="hashtag" value="itt"><img onclick="choose('hashtag', 3, 'hashtag3'); dynamicValidate();" id="hashtag3" class="answer hashtag" src="http://i.imgur.com/cXZXzrN.png"/></input>
+		<input class="radio_button" type="radio" name="hashtag" value="gct"><img onclick="choose('hashtag', 4, 'hashtag4'); dynamicValidate();" id="hashtag4" class="answer hashtag" src="http://i.imgur.com/uPCgv4z.png"/></input>
+		<input class="radio_button" type="radio" name="hashtag" value="endpolio"><img onclick="choose('hashtag', 5, 'hashtag5'); dynamicValidate();" id="hashtag5" class="answer hashtag" src="http://i.imgur.com/IC8Oovo.png"/></input>
+		<input class="radio_button" type="radio" name="hashtag" value="holder" checked></input>
+
+	</div>
+
+	<h2><br />7. Choose a band</h2>
+	<div class="answer_block">
+		<input class="radio_button" type="radio" name="band" value="1d"><img onclick="choose('band', 0, 'band0'); dynamicValidate();" id="band0" class="answer band" src="http://www.globalpovertyproject.com/citizentickets/images/onedirection.jpg"/></input>
+		<input class="radio_button" type="radio" name="band" value="mcgraw"><img onclick="choose('band', 1, 'band1'); dynamicValidate();" id="band1" class="answer band" src="http://www.globalpovertyproject.com/citizentickets/images/timmcgraw.jpg"/></input>
+		<input class="radio_button" type="radio" name="band" value="nin"><img onclick="choose('band', 2, 'band2'); dynamicValidate();" id="band2" class="answer band" src="http://imgur.com/rzCF08d.jpg"/></input>
+		<br /><input class="radio_button" type="radio" name="band" value="kanye"><img onclick="choose('band', 3, 'band3'); dynamicValidate();" id="band3" class="answer band" src="http://i.imgur.com/isCMkaO.png"/></input>
+		<input class="radio_button" type="radio" name="band" value="katyperry"><img onclick="choose('band', 4, 'band4'); dynamicValidate();" id="band4" class="answer band" src="http://www.globalpovertyproject.com/wp-content/uploads/2014/03/katyperry.jpg"/></input>
+		<input class="radio_button" type="radio" name="band" value="franti"><img onclick="choose('band', 5, 'band5'); dynamicValidate();" id="band5" class="answer band" src="http://www.globalpovertyproject.com/citizentickets/images/michaelfrantiandspearhead.jpg"/></input>
+		<br /><input class="radio_button" type="radio" name="band" value="tonybennett"><img onclick="choose('band', 6, 'band6'); dynamicValidate();" id="band6" class="answer band" src="http://www.globalpovertyproject.com/citizentickets/images/tonybennett.jpg"/></input>
+		<input class="radio_button" type="radio" name="band" value="jezabels"><img onclick="choose('band', 7, 'band7'); dynamicValidate();" id="band7" class="answer band" src="http://static.mopro.com/774D1EE5-02AA-4588-BBA0-95593AA5AFE5/771e19df-5cbe-4f43-9031-dd5fdc04d11c.jpg"/></input>
+		<input class="radio_button" type="radio" name="band" value="mcbusted"><img onclick="choose('band', 8, 'band8'); dynamicValidate();" id="band8" class="answer band" src="http://www.globalpovertyproject.com/wp-content/uploads/2014/03/mcbusted.jpg"/></input>
+		<input class="radio_button" type="radio" name="band" value="holder" checked></input>
+
+	</div>
+
+	<h2><br />8. What inspired you to become a Global Citizen?</h2>
+	<div class="answer_block" style="text-align:left;">
+		<h3>
+		<input class="radio_button" type="radio" name="why" value="extremepoverty"><img onclick="choose('why', 0, 'why0'); dynamicValidate();" id="why0" class="answer why" src="http://i.imgur.com/kUgqpd7.png"/></input>
+		<input class="radio_button" type="radio" name="why" value="help"><img onclick="choose('why', 1, 'why1'); dynamicValidate();" id="why1" class="answer why" src="http://i.imgur.com/D5VHPXp.png"/></input>
+		<input class="radio_button" type="radio" name="why" value="opportunities"><img onclick="choose('why', 2, 'why2'); dynamicValidate();" id="why2" class="answer why" src="http://i.imgur.com/EhwZ2Gj.png"/></input><br />
+		<input class="radio_button" type="radio" name="why" value="whowill"><img onclick="choose('why', 3, 'why3'); dynamicValidate();" id="why3" class="answer why" src="http://i.imgur.com/X7V8w5T.png"/></input>
+		<input class="radio_button" type="radio" name="why" value="zp2030"><img onclick="choose('why', 4, 'why4'); dynamicValidate();" id="why4" class="answer why" src="http://i.imgur.com/EwgGU1L.png"/></input>
+		<input class="radio_button" type="radio" name="why" value="festival"><img onclick="choose('why', 5, 'why5'); dynamicValidate();" id="why5" class="answer why" src="http://i.imgur.com/2rgOlK6.png"/></input>
+		<input class="radio_button" type="radio" name="why" value="holder" checked></input>
+
+
+		</h3>
+	</div>
+	<br /><br />
+</form>
+
+<div id="result" style="border-top:2px solid black;">
+	<br />
+	
+	<div id="option0" class="answer_option">
+		<h1>Picking up steam</h1>
+	</div>
+	
+	<div id="option1" class="answer_option">
+		<h1>Go Getter</h1>
+	</div>
+	
+	<div id="option2" class="answer_option">
+		<h1>Going Strong</h1>
+	</div>
+	
+	<div id="option3" class="answer_option">
+		<h1>Ahead of the Curve</h1>
+	</div>
+	
+	<div id="option4" class="answer_option">
+		<h1>Game Changer</h1>
+	</div>
+	
+	<div id="option5" class="answer_option">
+		<h1>You got:</h1>
+		<br /><img class="result" src="http://i.imgur.com/eH5M92q.png"/>
+	</div>
+
+</div>
