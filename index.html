@@ -63,8 +63,8 @@
 	}
 	
 	.video{
-		width: 600px; 
-		height: 275px; 
+		width: 100%; 
+		height: 400px; 
 	}
 	
 	.next{
@@ -73,6 +73,13 @@
 	
 	#quiz{
 		display:none;
+	}
+	
+	.about{
+		margin-left:5%;
+		margin-right:5%;
+		border-left:#19AECF solid 2px;
+		padding-left:1%;
 	}
 </style>
 
@@ -167,11 +174,17 @@
 </script>
 
 <h1 class="ss-form-title" dir="ltr">Stefan example</h1>
-<div class="ss-form-desc ss-no-ignore-whitespace">Short blurb about what it means to be a Global Citizen</div>
+<div class="about">
 
-<hr class="ss-email-break" style="display:none;">
+The Global Citizen is an international education and advocacy organization whose mission it to increase the number and effectiveness of people taking action against extreme poverty by 2030. 
+<br /><br />
+Global Citizen is an online action-reward platform that enables individuals to register as Global Citizens, take meaningful actions that benefit the world's poorest communities and, in return, earn digital points that enable them to enter into contests for rewards. <br />
+<br />
+Global Citizen is best known for the 2012 and 2013 Global Citizen Festivals on the Great Lawn of New York's Central Park. Over two years the festivals hosted 120,000 fans with more than 35 million watching online and broadcast. Satellite events have been held in New York City and Melbourne, Australia. 
+<br /><br />
+In 2013 Global Poverty Project launched Global Citizen Tickets, an ongoing rewards program offering two tickets to more than 75 leading artists' concerts. These tickets are made available through users taking action on the Global Citizen platform. Through these efforts, over 1.5 million actions have been taken to benefit the world's poor.</div>
+
 </div>
-<div class="ss-form">
 
 <!--form begins-->
 <form action="https://docs.google.com/a/globalpovertyproject.com/forms/d/1HN6sif1qpdXV8KlZ5jpXj8u4d54TY_HbOb3laOTxVdw/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
@@ -179,13 +192,11 @@
 <ol role="list" class="ss-question-list" style="padding-left: 0">
 
 <!--essentials begin-->
-<div id="essentials" class="box">
-	<table>
-	
+	<table id="essentials" class="box">
 	<tr>
 	<!--first name-->
 	<div class="ss-form-question errorbox-good" role="listitem">
-		<td><label class="ss-q-item-label" for="entry_307233278">
+		<td style="width:15%;"><label class="ss-q-item-label" for="entry_307233278">
 			<div class="ss-q-title">First Name
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
@@ -193,7 +204,7 @@
 
 		</label></td>
 	<!--first name input box-->
-	<td><input type="text" name="entry.307233278" value="" class="ss-q-short" id="entry_307233278" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""></td><td><div class="ss-required-asterisk" id="fnamebad">*</div></td>
+	<td style="width:50%;"><input type="text" name="entry.307233278" value="" class="ss-q-short" id="entry_307233278" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""></td><td style="width:30%;"><div class="ss-required-asterisk" id="fnamebad">*</div></td>
 
 	</div> 
 	</tr>
@@ -221,7 +232,7 @@
 
 		<td><label class="ss-q-item-label" for="entry_10226902">
 			<div class="ss-q-title">Email Address
-			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
+			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)" placeholder="example@example.com"></label>
 			</div>
 		</label></td>
 		
@@ -263,13 +274,14 @@
 	<td><textarea name="entry.482493435" rows="8" cols="60" class="ss-q-long" id="entry_482493435" dir="auto" aria-label="Address  " aria-required="true" required=""></textarea></td><td><div class="ss-required-asterisk" id="addressbad">*</div></td>
 	</tr>
 	</div>
+	<tr><td></td><td style="background:#19AECF; color:white;">
+<div onclick="validate_essentials()" style="text-align:center;">Enter</div></td><td><div class="ss-required-asterisk" id="overall" style="text-align:center;">Please fill in all of the fields</div></td>
 	
+	</tr>
 	</table>
-	<div class="ss-required-asterisk" id="overall" style="text-align:center;">Please correct all *'d areas</div>
-<div onclick="validate_essentials()" style="text-align:center;">Enter</div>
+	
 
 
-</div>
 
 
 <!--end essentials-->
@@ -747,7 +759,7 @@
 </div>
 </ol>
 
-</form></div>
+</form>
 <div class="ss-footer"><div class="ss-attribution"></div>
 <div class="ss-legal"><div class="disclaimer-separator"></div>
 <div class="disclaimer" dir="ltr">
