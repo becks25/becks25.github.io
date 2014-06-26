@@ -51,7 +51,13 @@
 		width:78%;
 		
 	}
-	
+	.complete{
+		background:#19AECF;
+		opacity:0.6;
+		color:white;
+		margin-right:5%;
+		text-align:center;
+	}
 	.question{
 		display:none;
 		margin-left:5%;
@@ -81,17 +87,50 @@
 		border-left:#19AECF solid 2px;
 		padding-left:1%;
 	}
+	
+	.next_no{
+		color:red;
+		display:none;
+	}
 </style>
 
 
 <script>
-	function next(id, current){
-		var current=document.getElementById(current);
-		current.style.display='none';
-		var show=document.getElementById(id);
-		show.style.display='block';
+	function next(id, current, grouping, alert){
+
+		var alertmsg=document.getElementById(alert);
+		alertmsg.style.display='none';
 		
+		//check if something is checked
+		radios=document.getElementsByName(grouping);
+		var checked="no";
+		for(var i=3; i>=0; i=i-1){
+			console.log('yes');
+			if(radios[i].checked==true){
+				checked="yes";
+			}
+		}
+
+		if(checked=="yes"){
+			var current=document.getElementById(current);
+			current.style.display='none';
+			var show=document.getElementById(id);
+			show.style.display='block';
+		}else{
+			alertmsg.style.display='block';
+		}
 	}
+	
+	function back(id, current){
+	var current=document.getElementById(current);
+			current.style.display='none';
+			var show=document.getElementById(id);
+			show.style.display='block';
+	
+	}
+</script>
+
+<script>
 	
 	function validate_essentials(){
 		//clear all asterisks out of the way
@@ -173,7 +212,7 @@
 	}
 </script>
 
-<img src="http://dqk9frulcisr8.cloudfront.net/DC81FF9C-1138-4A5E-B0B9-185BE496B2F3/c96e5988-4385-4579-b241-7a35f57377c0.jpg" style="width:100%;"/>
+<h1 class="ss-form-title" dir="ltr">Stefan example</h1>
 <div class="about">
 
 The Global Citizen is an international education and advocacy organization whose mission it to increase the number and effectiveness of people taking action against extreme poverty by 2030. 
@@ -183,7 +222,7 @@ Fill out the following information to enter for a chance to...</div>
 </div>
 
 <!--form begins-->
-<form action="https://docs.google.com/a/globalpovertyproject.com/forms/d/1HN6sif1qpdXV8KlZ5jpXj8u4d54TY_HbOb3laOTxVdw/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
+<form action="https://docs.google.com/a/globalpovertyproject.com/forms/d/1HN6sif1qpdXV8KlZ5jpXj8u4d54TY_HbOb3laOTxVdw/formResponse" method="POST" id="ss-form" target="_self" onsubmit="" name=form1>
 
 <ol role="list" class="ss-question-list" style="padding-left: 0">
 
@@ -322,7 +361,8 @@ Fill out the following information to enter for a chance to...</div>
 
 	</ul>
 	
-	<div class="next" onclick="next('bono2', 'bono1')">Next</div>
+	<div class="next_no" id="b1_no">*Please select an answer</div>
+	<div class="next" onclick="next('bono2', 'bono1','entry.1747284471', 'b1_no')">Next</div>
 	
 	<br />
 	</div>
@@ -356,8 +396,11 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	
-		<div class="next" onclick="next('bono3', 'bono2')">Next</div>
-		<div class="next" onclick="next('bono1', 'bono2')">Back</div>
+		<div class="next_no" id="b2_no">*Please select an answer</div>
+
+	
+		<div class="next" onclick="next('bono3', 'bono2', 'entry.527360591', 'b2_no')">Next</div>
+		<div class="next" onclick="back('bono1', 'bono2')">Back</div>
 
 
 	</div>
@@ -391,8 +434,11 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	
-		<div class="next" onclick="next('bono4', 'bono3')">Next</div>
-		<div class="next" onclick="next('bono2', 'bono3')">Back</div>
+	<div class="next_no" id="b3_no">*Please select an answer</div>
+
+
+		<div class="next" onclick="next('bono4', 'bono3', 'entry.1974467103', 'b3_no')">Next</div>
+		<div class="next" onclick="back('bono2', 'bono3')">Back</div>
 	</div>
 	
 	
@@ -423,10 +469,19 @@ Fill out the following information to enter for a chance to...</div>
 <span class="ss-choice-label">Option 4</span>
 </label></li>
 	</ul>
-	
-		<div class="next" onclick="next('bono3', 'bono4')">Back</div>
+		<div class="next_no" id="b4_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('bono5', 'bono4', 'entry.781901459', 'b4_no')">Next</div>
+		
+		<div class="next" onclick="back('bono3', 'bono4')">Back</div>
+
 	</div>
 
+
+		<div id="bono5" class="complete question bono 5" >
+			<h2>Questions complete</h2>
+		</div>
 </div>
 
 
@@ -469,10 +524,15 @@ Fill out the following information to enter for a chance to...</div>
 <span class="ss-choice-label">Option 4</span>
 </label></li>
 
+
 	</ul>
-	
-		<div class="next" onclick="next('hans2', 'hans1')">Next</div>
+		<div class="next_no" id="h1_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('hans2', 'hans1', 'entry.28611072', 'h1_no')">Next</div>
+
 	<br />
+
 	</div>
 
 	<!--hans q2-->
@@ -502,8 +562,13 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	<br />
-		<div class="next" onclick="next('hans3', 'hans2')">Next</div>
-		<div class="next" onclick="next('hans1', 'hans2')">Back</div>
+	
+			<div class="next_no" id="h2_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('hans3', 'hans2', 'entry.1962814325', 'h2_no')">Next</div>
+
+		<div class="next" onclick="back('hans1', 'hans2')">Back</div>
 
 	</div>
 	
@@ -533,9 +598,11 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	<br />
-	
-		<div class="next" onclick="next('hans4', 'hans3')">Next</div>
-		<div class="next" onclick="next('hans2', 'hans3')">Back</div>
+	<div class="next_no" id="h3_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('hans4', 'hans3', 'entry.509809431', 'h3_no')">Next</div>
+		<div class="next" onclick="back('hans2', 'hans3')">Back</div>
 	</div>
 
 
@@ -568,9 +635,18 @@ Fill out the following information to enter for a chance to...</div>
 	</ul>
 	
 	<br />
-		<div class="next" onclick="next('hans3', 'hans4')">Back</div>
+		<div class="next_no" id="h4_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('hans5', 'hans4', 'entry.1459467902', 'h4_no')">Enter</div>
+		<div class="next" onclick="back('hans3', 'hans4')">Back</div>
 	</div>
 
+
+	<!--complete-->
+	<div id="hans5" class="complete question hans 5" >
+			<h2>Questions complete</h2>
+	</div>
 </div>
 
 <!--Simon video & quiz-->
@@ -610,7 +686,11 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 		<br />
-		<div class="next" onclick="next('simon2', 'simon1')">Next</div>
+		<div class="next_no" id="s1_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('simon2', 'simon1', 'entry.1182868116', 's1_no')">Next</div>
+
 </div>
 	
 	<!--simon q2-->
@@ -640,8 +720,12 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	<br />
-	<div class="next" onclick="next('simon3', 'simon2')">Next</div>
-	<div class="next" onclick="next('simon1', 'simon2')">Back</div>
+	
+		<div class="next_no" id="s2_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('simon3', 'simon2', 'entry.586917750', 's2_no')">Next</div>
+	<div class="next" onclick="back('simon1', 'simon2')">Back</div>
 </div>
 
 	<!--simon q3-->
@@ -672,8 +756,12 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	<br />
-	<div class="next" onclick="next('simon4', 'simon3')">Next</div>
-	<div class="next" onclick="next('simon2', 'simon3')">Back</div>
+	
+	<div class="next_no" id="s3_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('simon4', 'simon3', 'entry.1818090153', 's3_no')">Next</div>
+	<div class="next" onclick="back('simon2', 'simon3')">Back</div>
 
 </div>
  
@@ -703,10 +791,19 @@ Fill out the following information to enter for a chance to...</div>
 </label></li>
 	</ul>
 	<br />
-	<div class="next" onclick="next('simon3', 'simon4')">Back</div>
+	
+	<div class="next_no" id="s4_no">*Please select an answer</div>
+
+		
+		<div class="next" onclick="next('simon5', 'simon4', 'entry.203273933', 's4_no')">Enter</div>
+	<div class="next" onclick="back('simon3', 'simon4')">Back</div>
 
 </div>
 
+	<!--complete-->
+	<div id="simon5" class="complete question simon 5" >
+			<h2>Questions complete</h2>
+	</div>
 </div>
 
 <!--essay 1-->
