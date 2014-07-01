@@ -54,8 +54,15 @@
 		padding:5px;
 		margin-left:10%;
 		margin-right:10%;
+		border-radius:4px;
 		width:78%;
-		background:#B1CCE6;
+		 /* RGBa with 0.6 opacity */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	}
 		
 	}
 	.complete{
@@ -86,6 +93,12 @@
 	
 	#quiz{
 		display:none;
+		background:url('turbines.png');
+		background-attachment:fixed;
+		position:absolute;
+		background-size:100%;
+		width:100%;
+		color:white;
 	}
 	
 	#about{
@@ -111,8 +124,7 @@
 	
 	.content{
 		border-radius:5px;
-		border:#4195E4 solid 2px;
-		background:#C8E5FF;
+	
 		align:center;
 		
 	}
@@ -600,8 +612,8 @@ Fill out the following information to enter for a chance to...</div>
 			<h2>Questions complete</h2>
 		</div>
 </div>
-
-<div id="content1" class="box content">
+<br /><br />
+<div id="content1" class="box ">
 <h2>Article Title</h2><br />
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vestibulum ultrices lectus ac vulputate. Integer convallis magna risus, nec interdum risus malesuada dictum. Aliquam eget hendrerit tellus. Vivamus eu urna pellentesque risus iaculis ornare. Vestibulum bibendum eleifend pretium. Vestibulum volutpat elementum elementum. Nam porta justo nec velit vulputate, nec convallis nunc imperdiet. Nulla non libero ut ipsum porta varius. Vivamus pharetra elementum justo, vel rhoncus mi dignissim eu. Morbi vitae tincidunt augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus tempus fermentum turpis volutpat mattis. Sed a eros sed odio cursus sodales nec nec tortor. Maecenas at tempus arcu, vel varius quam. Mauris sed mi vel leo vehicula blandit.
 <br /><br />
@@ -613,7 +625,7 @@ Ut blandit orci mollis orci gravida blandit. Donec id viverra justo. Maecenas ju
 <br /><br />
 Integer sed arcu sed nisi varius sodales. Suspendisse quis turpis faucibus, cursus velit ut, tincidunt purus. Vestibulum ultricies molestie lacus, et accumsan ipsum posuere id. Fusce pulvinar vitae dui viverra accumsan. Aliquam non convallis orci, id blandit nunc. Quisque fermentum in velit a scelerisque. Aliquam erat volutpat. Sed pharetra massa eu diam mattis, vitae vehicula erat pellentesque. Pellentesque commodo ut quam at auctor. Cras justo nisl, vulputate eu semper laoreet, placerat eu lacus. Vivamus vehicula eu mi non gravida. Proin molestie condimentum purus a laoreet. Aliquam ornare vulputate nisl vel fermentum. Suspendisse potenti. Integer sit amet lacus vitae enim feugiat facilisis. Donec convallis ultrices felis ultricies hendrerit.
 </div>
-
+<br /><br />
 <!--Hans Rosling video & quiz-->
 <div id="hans" class="box" >
 
@@ -790,7 +802,7 @@ Integer sed arcu sed nisi varius sodales. Suspendisse quis turpis faucibus, curs
 			<h2>Questions complete</h2>
 	</div>
 </div>
-
+<br /><br />
 <!--Simon video & quiz-->
 <div id="simon" class="box">
 	<div class="errorbox-good" role="listitem">
@@ -958,7 +970,7 @@ Integer sed arcu sed nisi varius sodales. Suspendisse quis turpis faucibus, curs
 			<h2>Questions complete</h2>
 	</div>
 </div>
-
+<br /><br />
 <!--essay 1-->
 <div id="essay1" class="box">
 	<h3>Essay #1 </h3>
@@ -998,7 +1010,7 @@ Integer sed arcu sed nisi varius sodales. Suspendisse quis turpis faucibus, curs
 	<textarea name="entry.447320411" rows="20" cols="90" class="ss-q-long" id="entry_447320411" dir="auto" aria-label="Essay 2  " aria-required="true" required=""></textarea>-->
 </div>
 
-
+<br />
 
 
 <input type="hidden" name="draftResponse" value="[,,&quot;4029434368008000806&quot;]
