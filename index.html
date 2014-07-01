@@ -92,8 +92,15 @@
 		
 		background-color: rgb(0, 0, 0);
 		color:white;
-		margin-left:2%;
-    
+		padding:2%;
+		padding-top:0;
+		
+     /* RGBa with 0.6 opacity */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 	}
 
 	
@@ -306,6 +313,8 @@
 <form action="https://docs.google.com/a/globalpovertyproject.com/forms/d/1HN6sif1qpdXV8KlZ5jpXj8u4d54TY_HbOb3laOTxVdw/formResponse" method="POST" id="ss-form" target="_self" onsubmit="" name=form1>
 
 <ol role="list" class="ss-question-list" style="padding-left: 0">
+
+<div id="beginning">
 <div id="about">
 <h1 class="ss-form-title" dir="ltr">Stefan example</h1>
 
@@ -315,8 +324,6 @@ The Global Citizen is an international education and advocacy organization whose
 <br /><br />
 Fill out the following information to enter for a chance to...</div>
 </div>
-<div id="beginning">
-
 <!--essentials begin-->
 <center>
 	<table id="essentials">
