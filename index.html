@@ -44,7 +44,6 @@
 	
 	.ss-required-asterisk{
 		color:red;
-		display:none;
 	}
 	
 	.box{
@@ -127,6 +126,35 @@
 	.nav{
 		text-align:center;
 	}
+	
+	#beginning{
+		background:url('http://upload.wikimedia.org/wikipedia/commons/3/32/Lego_Color_Bricks.jpg');
+		background-size:100%;
+		background-repeat:repeat;
+	}
+	
+	.ast{
+		visibility:hidden;
+		background:none;
+	}
+	
+	#essentials{
+		margin-top:-50px;
+		 margin-left:25%; 
+		 background:gray; 
+		 width:40%;
+		 color:white;
+		 
+		  background-color: rgb(0, 0, 0);
+    /* RGBa with 0.6 opacity */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+
+	}
+	
 </style>
 
 
@@ -256,17 +284,14 @@
 		}else{
 			all=document.getElementById('overall');
 			all.style.display='block';
+			$('.ast').css('visibility','visible');
 		}
 		
 	}
 </script>
 
 <h1 class="ss-form-title" dir="ltr">Stefan example</h1>
-<div class="about">
 
-The Global Citizen is an international education and advocacy organization whose mission it to increase the number and effectiveness of people taking action against extreme poverty by 2030. 
-<br /><br />
-Fill out the following information to enter for a chance to...</div>
 
 </div>
 
@@ -274,14 +299,20 @@ Fill out the following information to enter for a chance to...</div>
 <form action="https://docs.google.com/a/globalpovertyproject.com/forms/d/1HN6sif1qpdXV8KlZ5jpXj8u4d54TY_HbOb3laOTxVdw/formResponse" method="POST" id="ss-form" target="_self" onsubmit="" name=form1>
 
 <ol role="list" class="ss-question-list" style="padding-left: 0">
+<div id="beginning">
 
+<div>
+
+The Global Citizen is an international education and advocacy organization whose mission it to increase the number and effectiveness of people taking action against extreme poverty by 2030. 
+<br /><br />
+Fill out the following information to enter for a chance to...</div>
 <!--essentials begin-->
 <center>
-	<table id="essentials" class="box" style="margin-top:-50px; margin-left:25%;">
+	<table id="essentials">
 	<tr>
 	<!--first name-->
 	<div class="ss-form-question errorbox-good" role="listitem">
-		<td style="width:20%;"><label class="ss-q-item-label" for="entry_307233278">
+		<td style="width:40%;"><label class="ss-q-item-label" for="entry_307233278">
 			<div class="ss-q-title">First Name:
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
@@ -289,7 +320,8 @@ Fill out the following information to enter for a chance to...</div>
 
 		</label></td>
 	<!--first name input box-->
-	<td style="width:70%;"><input  type="text" name="entry.307233278" value="" class="ss-q-short" id="entry_307233278" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""><div class="ss-required-asterisk" id="fnamebad">* Please enter a first name</div></td>
+	<td style="width:50%;" ><input  type="text" name="entry.307233278" value="" class="ss-q-short" id="entry_307233278" dir="auto" aria-label="First Name  " aria-required="true" required="" title=""></td>
+	<td class="ast" style="width:20%;"><div class="ss-required-asterisk" id="fnamebad">*</div></td>
 
 	</div> 
 	</tr>
@@ -305,7 +337,8 @@ Fill out the following information to enter for a chance to...</div>
 		</label></td>
 		
 	<!--last name input box-->
-	<td><input  type="text" name="entry.1426570138" value="" class="ss-q-short" id="entry_1426570138" dir="auto" aria-label="Last Name  " aria-required="true" required="" title=""><div class="ss-required-asterisk" id="lnamebad">* Please enter a last name</div></td>
+	<td><input  type="text" name="entry.1426570138" value="" class="ss-q-short" id="entry_1426570138" dir="auto" aria-label="Last Name  " aria-required="true" required="" title=""></td>
+	<td class="ast"><div class="ss-required-asterisk" id="lnamebad">*</div></td>
 	</tr>
 	</div> 
 	
@@ -322,7 +355,8 @@ Fill out the following information to enter for a chance to...</div>
 		</label></td>
 		
 	<!--email input box-->
-	<td><input placeholder="email@email.com" type="text" name="entry.10226902" value="" class="ss-q-short" id="entry_10226902" dir="auto" aria-label="Email Address  Please enter a valid email address" aria-required="true" required="" pattern=".*^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$.*" title="Please enter a valid email address"><div class="ss-required-asterisk" id="emailbad">* Please enter a valid email address</div></td>
+	<td><input placeholder="email@email.com" type="text" name="entry.10226902" value="" class="ss-q-short" id="entry_10226902" dir="auto" aria-label="Email Address  Please enter a valid email address" aria-required="true" required="" pattern=".*^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$.*" title="Please enter a valid email address"></td>
+	<td class="ast"><div class="ss-required-asterisk" id="emailbad">*</div></td>
 	</tr>
 
 	</div> 
@@ -339,7 +373,9 @@ Fill out the following information to enter for a chance to...</div>
 		</label></td>
 	
 	<!--phone number input box-->
-	<td><input placeholder="1-123-123-4567" type="text" name="entry.1328801782" value="" class="ss-q-short" id="entry_1328801782" dir="auto" aria-label="Phone Number  Please enter a valid email address" aria-required="true" required="" pattern=".*^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$.*" title="Please enter a valid email address"><div class="ss-required-asterisk" id="phonebad">* Please enter a valid phonenumber</div></td>
+	<td><input placeholder="1-123-123-4567" type="text" name="entry.1328801782" value="" class="ss-q-short" id="entry_1328801782" dir="auto" aria-label="Phone Number  Please enter a valid email address" aria-required="true" required="" pattern=".*^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$.*" title="Please enter a valid email address"></td>
+	
+	<td class="ast"><div class="ss-required-asterisk" id="phonebad">*</div></td>
 	</tr>
 
 	</div> 
@@ -349,23 +385,27 @@ Fill out the following information to enter for a chance to...</div>
 	<div class="ss-form-question errorbox-good" role="listitem">
 	<tr>
 	<br />
-		<td><label class="ss-q-item-label" for="entry_482493435">
-			<div class="ss-q-title">Address:
+		<td style="vertical-align:top;"><label class="ss-q-item-label" for="entry_482493435">
+			<div class="ss-q-title" >Address:
 			<label for="itemView.getDomIdToLabel()" aria-label="(Required field)"></label>
 			</div>
 		</label></td>
 		
 	<!--address textarea-->
-	<td><textarea name="entry.482493435" rows="9" cols="30" class="ss-q-short" id="entry_482493435" dir="auto" aria-label="Address  " aria-required="true" required=""></textarea><div class="ss-required-asterisk" id="addressbad" style="vertical-align:middle;">* Please enter an address</div></td>
+	<td><textarea name="entry.482493435" rows="9" cols="30" class="ss-q-short" id="entry_482493435" dir="auto" aria-label="Address  " aria-required="true" required=""></textarea></td>
+	<td class="ast" style="vertical-align:top;"><div class="ss-required-asterisk" id="addressbad" >*</div></td>
 	</tr>
 	</div>
 	<tr><td></td><td >
-<div onclick="validate_essentials()" style="align:center;text-align:center; width:231px; border-radius:10px;" ><img src="http://i.imgur.com/ZocE9m2.png"/></div><div class="ss-required-asterisk" id="overall">* Please fill in all of the fields</div></td>
+<div onclick="validate_essentials()" style="align:center;text-align:center; width:231px; border-radius:10px;" ><img src="http://i.imgur.com/ZocE9m2.png"/></div></td>
 	
+	</tr>
+	<tr>
+		<td></td><td class="ast"><div class="ss-required-asterisk" id="overall">* Please fill in all of the fields</div></td>
 	</tr>
 	</table>
 </center>
-
+</div>
 
 
 
