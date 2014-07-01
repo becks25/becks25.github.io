@@ -109,11 +109,97 @@ textarea {
 body, html {
 	height: 100%;
 	min-height: 100%;
-	background-color: #000000;
-}
-body {
+	    font-family: Arial, Helvetica, sans-serif;
+		width:100%;
+		background:black;
 	
-}
+	}
+	
+	
+	.ss-required-asterisk{
+		color:red;
+		display:none;
+	}
+	
+	.box{
+		padding:5px;
+		margin-right:10%;
+		width:78%;
+		
+	}
+	.complete{
+		background:#4195E4;
+		color:white;
+		margin-right:5%;
+		text-align:center;
+	}
+	.question{
+		display:none;
+		margin-left:5%;
+		
+	}
+	
+	#bono1, #hans1, #simon1{
+		display:block;
+	}
+	
+	.video{
+		width: 100%; 
+		height: 400px; 
+	}
+	
+	.next{
+		text-align:center;
+		display:inline-block;
+	}
+	
+	
+	
+	#quiz{
+		display:none;
+	}
+	
+	.about{
+		margin-left:5%;
+		margin-right:5%;
+		border-left:#4195E4 solid 2px;
+		padding-left:1%;
+	}
+	
+	.next_no{
+		color:red;
+		display:none;
+	}
+	
+	.content{
+		border-radius:5px;
+		border:#4195E4 solid 2px;
+		background:#C8E5FF;
+		padding:2%;
+		align:center;
+		
+	}
+	
+	.ss-q-title{
+		font-weight:bold;
+	}
+	
+	.ss-q-short{
+		border-radius:10px;
+		width:231px;
+		border:black solid 1px;
+	}
+	
+	input, textarea{
+		text-align:center;
+		padding:2px;
+		font-size: 17px;
+	}
+	
+	.nav{
+		text-align:center;
+	}
+
 .no-js {
 	padding-top: 106px;
 }
@@ -147,24 +233,19 @@ main {
 }
 .bcg {
 	background-position: center center;
-	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
-	height: 100%;
 	width: 100%;
 }
 
 .hsContainer {
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 	position: relative;
 }
 
 .hsContent {
 	max-width: 700px;
 	position: absolute;
-	left: 50%;
 	top: 50%;
 }
 	.hsContent h2  {
@@ -185,18 +266,29 @@ main {
 	}
 
 /* Slide 1 */
-#slide-1 .bcg {background-image:url('../img/bcg_slide-1.jpg')}
+#slide-1 .bcg {
+	background-image:url('../img/bcg_slide-1.jpg');
+	background-repeat:repeat;
+	overflow:visible;
+	height:700px;
+}
 #slide-1 .hsContent {
-	bottom: 200px;
-	top: auto;
+	top: 0px;
+	height:1000px;
+	overflow:visible;
 }
 
 /* Slide 2 */
-#slide-2 .bcg {background-image:url('../img/bcg_slide-2.jpg')}
+#slide-2 .bcg {
+		background-image:url('../img/bcg_slide-2.jpg')
+		height:100%;
+		width:100%;
+		background-repeat:repeat;
+}
 #slide-2 .hsContent {
-	margin-left: -450px;
-	bottom: 200px;
 	top: auto;
+	overflow:scroll;
+	height:100%;
 }
 
 /* Slide 3 */
