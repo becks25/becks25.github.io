@@ -1,0 +1,1877 @@
+<!--
+*************************************
+Title: The Global Citizen Festival
+URL: globalcitizen.org/festival
+By: Beckylee Dell
+Date Created: Wednesday, July 2, 2014
+Last Updated: September 22, 2014
+*************************************
+
+
+	BROWSER (tested on)
+	Chrome	35.0.1916.153	Everything works
+	IE 		10				Everything works
+	Safari 	7.0.4			Everything works
+	Firefox	19.0.2 			Mobile journey button not working - outdated program.
+	iPhone 5				Everything works
+	Samsung Galaxy			Everything works
+	iPhone 4				Everything works
+	
+	*No zoom on mobile to accomodate for iPhone 4 landscape view.
+
+	BROWSER SIZE
+	100% dynamic- works at any size screen!
+	Max-width: 1500px (centered)
+	
+
+NOTE: When changing blurbs or titles, all changes should happen in <script>.  
+~DO NOT HARDCODE ANY ACTION RELATED TEXT OR LINKS~
+
+
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+
+
+	
+<!--dynamically resize and relocate all circles and blurbs,-->
+<script>
+	//starting left spots for blurbs (at 1500px)
+	var blurbX=[350, 860, 1180,480, 308,560, 933, 250, 738, 1250, 1050, 235, 920, 310, 560, 1240, 1240, 1260, 660, 330, 265, 820, 1200, 780, 1250, 250, 800, 300, 690, 1000, 1200, 340, 680, 900, 1230, 1230, 430];
+	
+	//starting top spots for blurbs (at 1500px)
+	var blurbY=[165, 50, 330, 375, 126, 368, 64, 314, 55, 120, 307, 230, 100, 170, 440, 230, 60, 350, 130, 430, 300, 130, 430, 100, 330, 300, 50, 280, 400, 450, 230, 70, 160, 390, 60, 450, 40];
+	
+	//starting left spots for circles (at 1500px)
+	var startingX=[250, 786, 1110, 407, 225, 489, 862, 1305, 670, 1280,975, 150, 850, 240, 490, 1170, 1270, 1300, 698, 360, 310, 815, 1200, 750, 1310, 250, 800, 270, 650, 970, 1220, 310, 650, 870, 1230, 1230, 370];
+	
+	//starting top spots for circles (at 1500px)
+	var startingY=[231, 114, 405, 443, 184, 435, 139, 380, 120, 120,375, 293, 150, 205, 490, 300, 90, 390, 150, 470, 330, 160, 460, 150, 340, 330, 100, 300, 435, 470, 250,90, 170, 400, 60, 450, 60];
+	
+	//starting bottom for other
+	var otherY=[200, 580, 100, 100, 250, 500, 0, 490, 600, 100, 390, 500, 100];
+	
+	//starting right for other
+	var otherX=[1360, 700, 990, 650, 1150, 1300, 1300, 1170, 230, 190, 670, 290, 1250];
+	
+	
+	var allActions=[];
+	
+	$(window).resize(adjust);
+	$(window).on('orientationchange', adjust);
+	
+	function adjust(){
+		console.log("adjust");
+		var wide=$("#map1").width();
+		
+		var map2=document.getElementById("image_map2").style.margin-top;
+		var map3=document.getElementById("image_map3").style.margin-top;
+		var map4=document.getElementById("image_map4").style.margin-top;
+		var crumple=document.getElementById("crumpled").style.margin-left;
+		var crumple_bottom=document.getElementById("crumpled").style.margin-bottom;
+
+		allBlurbs =$(".blurb");
+		var mobilewide=window.innerWidth;
+		if(wide<1500){
+			var diff= 1610-wide;
+			var ratio = diff/1610;
+			
+			ratio=1-ratio;
+			
+			console.log(ratio);
+			map2=map2*ratio;
+			map3=map3*ratio;
+			map4=map4*ratio;
+			crumple_bottom=crumple_bottom*ratio;
+			
+			//adjust the location of the others
+			others=$(".other")
+			
+			for(var i=(others.length-1);i>=0;i--){
+					var x=findOtherRight(i,ratio);
+					var y=findOtherBottom(i, ratio);
+					var r=100*ratio;
+					
+					var coordsArray=[x,y,r];
+			
+					var new_coords = coordsArray.join();
+					others[i].coords=new_coords;
+					coordsArray=[];
+				}
+			
+			//adjust according to screen size
+			allActions=$(".action");
+			if(wide<1000){
+				$(".blurb").css('display','block');
+				small_blurbs();
+				$(".nav_button").css('width','30%');
+				$('body').css('width','100%');
+				if(wide<730){
+					if(mobilewide<=710){
+						$(".nav_button").css('width','40%');
+						$('body').css('width',mobilewide);
+						$("#mobilebanner").width=mobilewide;
+						$("#outer_reg").width=mobilewide;
+						$("#inner_reg").width=mobilewide;
+						$("#preregister").width=mobilewide;
+					}
+				}
+				if(wide<500){
+					if(mobilewide<=500){
+						$(".nav_button").css('width','60%');
+						$('body').css('width','100%');
+					}
+				}
+				
+				
+				
+			
+			}else{
+				$(".blurb").css('display','none');
+				$(".nav_button").css('width','17%');
+			}
+			
+			//update all circle locations (for >730)
+			for(var i=(allActions.length-1);i>=0;i--){
+			
+				var x=findX(i, ratio);
+				var y=findY(i,ratio);
+				var r=62*ratio;
+				var c=",";
+				var coordsArray=[x,y,r];
+			
+				var new_coords = coordsArray.join();
+			
+				allActions[i].coords=new_coords;
+				coordsArray=[];
+				
+				}
+			
+			//relocate all blurbs dynamically
+			for(var i=(allBlurbs.length-1);i>=0;i--){
+				var top=findTop(i,ratio);
+				var left=findLeft(i,ratio);
+				var p="px";
+				
+				if(wide<1000){
+					left=left-110;
+					top=top;
+					allBlurbs[i].style.height="auto";
+					allBlurbs[i].style.width="150px";
+					allBlurbs[i].style.textAlign="center";
+				}
+				var topArray=[top,p];
+				var newTop=topArray.join("");
+				
+				var leftArray=[left,p];
+				var newLeft=leftArray.join("");
+				
+				allBlurbs[i].style.top=newTop;
+				if(i==7){
+					allBlurbs[i].style.right=newLeft;
+				}else{
+					allBlurbs[i].style.left=newLeft;
+				}
+				topArray=[];
+				leftArray=[];
+			}	
+		//if width >=1500, put everything back to start
+		}else{
+			for(var i=(allActions.length-1);i>=0;i--){
+			
+				var x=startingX[i];
+				var y=startingY[i];
+				var r=62;
+				var coordsArray=[x,y,r];
+			
+				var new_coords = coordsArray.join();
+			
+				allActions[i].coords=new_coords;
+				coordsArray=[];
+				
+				}
+				
+			others=$(".other");
+				for(var i=(others.length-1);i>=0;i--){
+			
+				var x=otherX[i];
+				var y=otherY[i];
+				var r=100;
+				var coordsArray=[x,y,r];
+			
+				var new_coords = coordsArray.join();
+			
+				others[i].coords=new_coords;
+				coordsArray=[];
+				
+				}
+			
+			allBlurbs =$(".blurb");
+			
+			for(var i=(allBlurbs.length-1);i>=0;i--){
+				var top=blurbY[i];
+				var left=blurbX[i];
+				var p="px";
+				
+				var topArray=[top,p];
+				var newTop=topArray.join("");
+				
+				var leftArray=[left,p];
+				var newLeft=leftArray.join("");
+				
+				allBlurbs[i].style.top=newTop;
+				if(i==7){
+					allBlurbs[i].style.right=newLeft;
+				}else{
+					allBlurbs[i].style.left=newLeft;
+				}
+				topArray=[];
+				leftArray=[];
+			}
+		}
+	
+	}
+	
+	
+	//find dynamic x coord
+	function findX(num, ratio){
+		var xref = startingX[num];
+		
+		return xref*ratio;
+	
+	}
+	
+	//find dynamic y coord
+	function findY(num, ratio){
+		var yref = startingY[num];
+		return yref*ratio;
+	
+	}
+	
+	function findTop(num, ratio){
+		var initTop=blurbY[num];
+		return initTop*ratio;
+	}
+	
+	function findLeft(num, ratio){
+		var initLeft=blurbX[num];
+		return initLeft*ratio;
+	}
+	
+	function findOtherRight(num, ratio){
+		var initRight=otherX[num];
+		return initRight*ratio;
+	}
+	
+	function findOtherBottom(num, ratio){
+		var initBot=otherY[num];
+		return initBot*ratio;
+	}
+	
+</script>
+
+<!--blurbs for computer -->
+<script>	
+	
+	$(document).ready(function(){
+		//insert dynamically changed blurbs for each action.  This changes them for all sizes.
+		
+		//JOURNEY 1
+		$('.blurb1').html("Watch Malala share why education is so important to her.<br /><br /><center>Watch the video for 1 point</center>");
+		$('.blurb2').html("Extreme poverty can be eliminated by 2030. Don't believe us? Find out how.<br /><br /><center>Share for 1 point</center>");
+		$('.blurb3').html("Find out why we're so pumped about vaccines. <br /><br /><center>Take the quiz for 1 point</center>");
+		$('.blurb4').html("See the faces, not just the statistics, involved in world vaccination efforts. <br /><br /><center>Sign the Petition for 1 point</center>");
+		$('.blurb5').html("Norway rocks. Find out why.<br /><br /><center>Share for 1 point</center>");
+		$('.blurb6').html("Find out why access to water, sanitation, and hygiene is crucial to combatting poverty. <br /><br /><center>Share for 1 point</center>");
+		$('.blurb7').html("Learn about the water for the world act and how it's helping people around the world. <br /><br /><center>Send the email for 1 point</center>");
+		$('.blurb8').html("Discover how this awesome organization is tackling the education gap and improving lives around the globe.<br /><br /><center>Watch the video for 1 point</center>");
+		
+		//JOURNEY 2
+		$('.blurb9').html("We're campaigning for the rights and needs of youth. Find out more here");
+		$('.blurb10').html("Learn about  sexual and reproductive health and rights in this infographic");
+		$('.blurb11').html("Find out how Canada is making waves by increasing their commitment to maternal, newborn and child health.");
+		$('.blurb12').html("We're thanking Canadian Prime Minister Stephen Harper for his leadership around vaccines, education, and maternal & child health and asking him to go further.");
+		$('.blurb13').html("India's Prime Minister is taking a stand for sanitation. Let's show our support.");
+		$('.blurb14').html("Here we break down the 'Post-2015 Development Agenda' and ask you to help make access to water and sanitation a global priority.");
+		$('.blurb15').html("Learn about the Water for the World Act and thank Senator Corker for his leadership in increasing access to water and sanitation.");
+		$('.blurb16').html("4 members of Congress are making sure that children everywhere have the opportunity to lead full, healthy lives thanks to life-saving vaccines. Let's thank them!");
+	
+		//JOURNEY 3
+		$('.blurb17').html("Everyone deserves access to a toilet.");
+		$('.blurb18').html("Join Malala in asking Canada to commit to education for all at the Global Citizen Festival");
+		$('.blurb19').html("Share your hopes for change around issues that impact our communities.");
+		$('.blurb20').html("Watch, share and invite others to #showyourselfie for governments to invest in youth rights and needs!");
+		$('.blurb21').html("Join our newest campaign for youth rights and upload a selfie with #showyourselfie!");
+
+		//JOURNEY 4
+		$('.blurb22').html("Dedicate a song to someone special to help make childhood better for kids around the world.");
+		$('.blurb23').html("Youth in Post 2015 Petition- Find out who is engaging in the #showyourselfie campaign!");
+		$('.blurb24').html("What do toilets from around the world look like? The answer may surprise you.");
+		$('.blurb25').html("Get to know Gavi, the Vaccine Alliance");
+		$('.blurb26').html("Tell LEGO you want them to make a financial commitment to  the Global Partnership for Education");
+		$('.blurb27').html("Water and sanitation matter. Learn why, and encourage world leaders to support the Water for the World Act.");
+
+		//JOURNEY 5
+		$('.blurb28').html("It's time to start talking sh*t.");
+		$('.blurb29').html("Sign a petition to let our leaders know we support the Water for the World Act");
+		$('.blurb30').html("Find out how sanitation will play a role as world leaders meet and form a plan for the future");
+		
+		$('.blurb31').html("Show your savvy by taking a quiz on the importance of education");
+		$('.blurb32').html("Let's ask Canada to commit to education for all");
+		
+		$('.blurb33').html("Join the movement for youth and #showyourselfie");
+		$('.blurb34').html("Find out more about sexual reproductive health and rights and why they matter for youth.");
+		
+		$('.blurb35').html("Familiarize yourself with the importance of vaccines by acing this quiz.");
+		$('.blurb36').html("We're calling on Norway to make a financial commitment to this year's festival in support of vaccines. Will you join us?");
+		$('.blurb37').html("We need a strong commitment from the US government towards increasing access to vaccines. Find out how you can help make this happen.");
+    	
+    	
+	})
+	
+
+</script>
+
+<!--blurbs for tablet & mobile, and mobile journey buttons-->
+<script>
+	function small_blurbs(){
+		//JOURNEY 1
+		$('.blurb1').html("Malala calls on world leaders");
+		$('.blurb2').html("What the world could look like in 2030");
+		$('.blurb3').html("An intro to vaccines and immunizations");
+		$('.blurb4').html("16 pictures of vaccination from around the world");
+		$('.blurb5').html("Why Norway rocks");
+		$('.blurb6').html(" Intro to WASH ");
+		$('.blurb7').html("Why the water for the world act matters");
+		$('.blurb8').html("Why is GPE important?");
+		
+
+
+	//journey2
+	
+		$('.blurb9').html("#showyourselfie");
+		$('.blurb10').html("Learn about  sexual and reproductive health and rights");
+		$('.blurb11').html("The 3.5 billion dollar reason Canada is totally winning right now");
+		$('.blurb12').html("Thank Canadian Prime Minister Stephen Harper!");
+		$('.blurb13').html("India's Prime Minister is taking a stand for sanitation.");
+		$('.blurb14').html("Make access to water and sanitation a global priority");
+		$('.blurb15').html(" Thanks for backing the #Water4World Act @SenBobCorker!");
+		$('.blurb16').html("Win for Kids' Health");
+			
+			
+	//journey3
+		$('.blurb17').html("Everybody needs a toilet.");
+		$('.blurb18').html("Ask Canada to commit to education for all.");
+		$('.blurb19').html("Share your hopes for change!");
+		$('.blurb20').html("Get governments to invest in youth rights!");
+		$('.blurb21').html("It's time to #showyourselfie");
+
+
+		//JOURNEY 4
+		$('.blurb22').html("Dedicate a song to someone special!");
+		$('.blurb23').html("Who's a part of the #showyourselfie campaign?");
+		$('.blurb24').html("What do toilets from around the world look like?");
+		$('.blurb25').html("Get to know Gavi, the Vaccine Alliance");
+		$('.blurb26').html("Tell LEGO to make a financial commitment to education");
+		$('.blurb27').html("Water and sanitation matter");
+		
+		
+		//JOURNEY 5
+		//JOURNEY 5
+		$('.blurb28').html("It's time to start talking sh*t.");
+		$('.blurb29').html("Sign a petition to support the Water for the World Act");
+		$('.blurb30').html("How will sanitation will play a role in the future?");
+		
+		$('.blurb31').html("Show your savvy by taking a quiz on the importance of education");
+		$('.blurb32').html("Let's ask Canada to commit to education for all");
+		
+		$('.blurb33').html("Join the movement for youth and #showyourselfie");
+		$('.blurb34').html("Find out more about sexual reproductive health and rights");
+		
+		$('.blurb35').html("Familiarize yourself with the importance of vaccines by acing this quiz");
+		$('.blurb36').html("Let's call on Norway");
+		$('.blurb37').html("Help us get a strong commitment from the US government towards increasing access to vaccines");
+		
+		//on mobile, show the journey when clicked
+		$('#journey1_title').click(function(){
+			$('#journey1').slideToggle({ 
+    			width:'toggle'
+    		});
+		});
+		
+		$('#journey2_title').click(function(){
+			$('#journey2_mobile').slideToggle({ 
+    			width:'toggle'
+    		});
+		});
+		
+		$('#journey3_title').click(function(){
+			$('#journey3_mobile').slideToggle({ 
+    			width:'toggle'
+    		});
+		});
+		
+		$('#journey4_title').click(function(){
+			$('#journey4_mobile').slideToggle({ 
+    			width:'toggle'
+    		});
+		});
+		
+		$('#journey5_title').click(function(){
+			$('#journey5_mobile').slideToggle({ 
+    			width:'toggle'
+    		});
+		});
+		}	
+</script>
+
+<!--links for all of the actions (dynamic!)-->
+<script>
+
+	$(document).ready(function(){
+		//JOURNEY 1
+		$('.action1').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=2df750af-bf2e-474a-bc33-23f9b514fde5');
+		$('.action2').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=7ea63f22-787f-42dc-ab12-84385e314b32');
+		$('.action3').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=65fab49b-32b2-4d69-be4d-7a3383254abf');
+		$('.action4').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=c5d35823-54c0-45b8-a0ed-0d6f917e411c');
+		$('.action5').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=fdf06a99-6fe1-4ebe-a2f2-88b6a4e761bd');
+		$('.action6').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=db127bd4-5d64-449d-88b0-303f0a1bc8a4');
+		$('.action7').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=140f4278-3c08-4174-8f3a-478715c95176');
+		$('.action8').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=10fa43bf-fd7e-448c-b2ff-1098a116779c');
+		
+$('.action9').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=6879281a-021c-4fe1-be28-9ed9a514503f');
+
+$('.action10').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=d485aa31-e326-4f49-be66-771a06cfb6a1');
+
+$('.action11').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=7532fbcb-f825-470f-b12d-ce6b88d6bbc8');
+
+$('.action12').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=f604557b-7e2b-40be-88dc-6076b26e7c48');
+
+$('.action13').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=b76fdb10-c957-47a2-88b4-2e06f508d227');
+
+$('.action14').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=2e30cc28-4688-4d30-9cc3-e90af0158cd4');
+
+$('.action15').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=90087cca-b744-4aed-bf95-3fad53caf704');
+
+$('.action16').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=47201a16-8758-4c16-919e-3ce60cd693f1');
+
+$('.action17').attr('href','http://www.toiletsbefore.com');
+$('.action18').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=d508e2ef-807e-4e4c-8797-dc804817fae3');
+$('.action19').attr('href','http://secure.msnbc.com/_api/hope/globalCitizen');
+$('.action20').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=dd277776-1bb9-4e98-859b-8006192a2bf9');
+$('.action21').attr('href','http://showyourselfie.org/');
+
+$('.action22').attr('href','http://www.thankyou.org/dedicate');
+$('.action23').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=ac193f28-f62b-4803-bf0d-0f4b4a0db5c2');
+$('.action24').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=364d5cf6-3196-4d09-ba15-97d1fe708402');
+$('.action25').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=ee56129d-d08c-48a1-8502-7a9f889d9b60');
+$('.action26').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=26b37025-0a89-4900-8d94-974c537061bc');
+$('.action27').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=1d374d28-7374-45ec-a865-55ef78ff6478');
+
+
+//Journey 5
+$('.action28').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=8162fba7-64fa-4d86-b83e-2cf3dbb5b60c');
+$('.action29').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=99ec6c34-0637-4c5d-b59e-bed933dc08a5');
+$('.action30').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=21755324-a81c-4495-afa6-f603e24e7221');
+$('.action31').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=33412723-f5b5-41de-85c6-c39d402a3753');
+$('.action32').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=bcb8b03f-476a-4c88-b464-6fdbb54f9f7c');
+$('.action33').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=cde25d9b-b620-401a-b96c-485078eed7a5');
+$('.action34').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=586f4d8f-9f91-4b43-86cc-300572eb254f');
+$('.action35').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=6f95a7f5-c736-4251-a8d8-730a495e1af2');
+$('.action36').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=d690b5c1-454e-4779-9536-7a884f7d8b3b');
+$('.action37').attr('href','http://www.globalcitizen.org/Content/Content.aspx?id=5f4a0900-4ee1-4316-9efa-a1eaa12e4ec0');
+	
+	
+		
+		//OTHER
+		$('.impack').attr('href','http://www.globalcitizen.org/impack');
+		$('.zp2030').attr('href','http://www.globalcitizen.org/zeropoverty');
+		$('.tiesto').attr('href','http://www.prizeo.com/prizes/tiesto/a-trip-to-new-york/default');
+		$('.hope').attr('href','http://secure.msnbc.com/_api/hope/globalCitizen');
+		$('.selfie').attr('href','http://showyourselfie.org/');
+	});
+</script>
+
+<!--animation css-->
+<style>
+	.nav_button {
+  display: inline-block;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.nav_button:hover, .nav_button:focus, .nav_button:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+
+	/* active */
+@-webkit-keyframes active {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+
+@keyframes active {
+  50% {
+    -webkit-transform: translateX(3px) rotate(2deg);
+    transform: translateX(3px) rotate(2deg);
+  }
+
+  100% {
+    -webkit-transform: translateX(-3px) rotate(-2deg);
+    transform: translateX(-3px) rotate(-2deg);
+  }
+}
+
+.active {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.active:hover, .active:focus, .active:active {
+  -webkit-animation-name: active;
+  animation-name: active;
+  -webkit-animation-duration: 0.15s;
+  animation-duration: 0.15s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+	#impack1{
+		position:absolute;
+		top:14%;
+		right:-5.5%;
+		display:none;
+	}
+	
+@-webkit-keyframes impack {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes impack {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+.impack {
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.impack:hover, .impack:focus, .impack:active {
+  -webkit-animation-name: impack;
+  animation-name: impack;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+</style>
+
+
+<!--general style-->
+<style>
+
+	#new_action{
+		color:#e05965;
+		font-weight:bold;
+	}
+	
+	#crumpled, #crumpled2, #crumpled3, #crumpled4{
+		display:none;
+		
+	}
+	.journeybutton{
+		margin:1%;
+	}
+	
+	.journeybutton:hover{
+		opacity:0.6;
+	}
+	
+	.journeyimg{
+		width:14%;
+		z-index:5;
+	}
+	
+	.journey1, .journey2, .journey3, .journey4{
+		display:block;
+	}
+		
+
+	
+	.nav_button{
+		width:20%;
+		display:inline-block;
+		margin:.5%;
+	}
+	.mobile{
+		display:none;
+	}
+	#mobileactions{
+		display:none;
+	}
+	.map{
+		max-width:1500px;
+		position:relative;
+		align:left;
+	}
+	
+	#crumpled, #crumpled2, #crumpled3{
+		max-width:1605px;
+		position:relative;
+		z-index:-1;
+	}
+	
+	#crumple_blurb{
+		position:absolute;
+		text-align:center;
+		top:30%;
+		font-size:30px;		
+    	width:100%;
+    	display:none;
+		
+	}
+
+	
+	
+	#map1, #map2, #map3, #map4, {
+		position:relative;
+		max-width:1500px;
+	}
+	
+	.blurb{
+		display:none;
+		color:white;
+		border-radius:5px;
+		padding:8px;
+		text-align:left;
+		height:auto;
+		width:190px;
+		background-color: rgb(38, 38, 38);
+   		 /* RGBa with 0.6 opacity */
+    	background-color: rgba(38, 38, 38, 0.7);
+    	/* For IE 5.5 - 7*/
+    	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    	/* For IE 8*/
+    	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    	position:absolute;
+
+	}
+
+		#action1-blurb_1500{
+			position:absolute;
+			left:330px;
+			top:165px;
+
+		}
+		
+		#action2-blurb_1500{
+			position:absolute;
+			left:510px;
+			top:50px;
+		}
+		
+		#action3-blurb_1500{
+			position:absolute;
+			left:1180px;
+			top:330px;
+			height:100px;
+		}
+		
+		#action4-blurb_1500{
+			position:absolute;
+			left:480px;
+			top:375px;
+			width:210px;
+		}
+		
+		#action5-blurb_1500{
+			position:absolute;
+			left:308px;
+			top:126px;
+			height:100px;
+
+		}
+		
+		#action6-blurb_1500{
+			position:absolute;
+			left:560px;
+			top:368px;
+		}
+		
+		#action7-blurb_1500{
+			position:absolute;
+			left:933px;
+			top:64px;
+		}
+		
+		#action8-blurb_1500{
+			position:absolute;
+			right:250px;
+			top:314px;
+			height:150px;
+		}
+		
+		#action9-blurb_1500{
+			position:absolute;
+			left:738px;
+			top:55px;
+
+		}
+		
+		#action10-blurb_1500{
+			position:absolute;
+			left:1190px;
+			top:191px;
+		}
+		
+		#action11-blurb_1500{
+			position:absolute;
+			left:1150px;
+			top:307px;
+		}
+		
+		#action12-blurb_1500{
+			position:absolute;
+			left:235px;
+			top:230px;
+		}
+		
+		#action13-blurb_1500{
+			position:absolute;
+			left:920px;
+			top:100px;
+		}
+		
+		#action14-blurb_1500{
+			position:absolute;
+			left:310px;
+			top:170px;
+		}
+		
+		#action15-blurb_1500{
+			position:absolute;
+			left:560px;
+			top:460px;
+		}
+		
+		#action16-blurb_1500{
+			position:absolute;
+			left:1240px;
+			top:270px;
+		}
+		
+		#action17-blurb_1500{
+			position:absolute;
+			left:1240px;
+			top:60px;
+		}
+		
+		#action18-blurb_1500{
+			position:absolute;
+			left:1260px;
+			top:350px;
+		}
+		
+		#action19-blurb_1500{
+			position:absolute;
+			left:660px;
+			top:130px;
+		}
+		
+		#action20-blurb_1500{
+			position:absolute;
+			left:330px;
+			top:430px;
+		}
+		
+		#action21-blurb_1500{
+			position:absolute;
+			left:265px;
+			top:300px;
+		}
+		
+		
+		#action22-blurb_1500{
+			position:absolute;
+			left:820px;
+			top:130px;
+		}
+		
+		
+		#action23-blurb_1500{
+			position:absolute;
+			left:1200px;
+			top:430px;
+		}
+		
+		#action24-blurb_1500{
+			position:absolute;
+			left:780px;
+			top:100px;
+		}
+		
+		#action25-blurb_1500{
+			position:absolute;
+			left:1350px;
+			top:330px;
+		}
+		
+		#action26-blurb_1500{
+			position:absolute;
+			left:800px;
+			top:50px;
+		}
+		
+		#action27-blurb_1500{
+			position:absolute;
+			left:300px;
+			top:300px;
+		}
+		
+		#action28-blurb_1500{
+			position:absolute;
+			left:320px;
+			top:280px;
+		}
+		
+		#action29-blurb_1500{
+			position:absolute;
+			left:370px;
+			top:70px;
+		}
+		
+		#action30-blurb_1500{
+			position:absolute;
+			left:430px;
+			top:40px;
+		}
+		
+		#action31-blurb_1500{
+			position:absolute;
+			left:710px;
+			top:400px;
+		}
+		
+		#action32-blurb_1500{
+			position:absolute;
+			left:680px;
+			top:160px;
+		}
+		
+		#action33-blurb_1500{
+			position:absolute;
+			left:1000px;
+			top:450px;
+		}
+		
+		#action34-blurb_1500{
+			position:absolute;
+			left:900px;
+			top:390px;
+		}
+		
+		#action35-blurb_1500{
+			position:absolute;
+			left:1200px;
+			top:230px;
+		}
+		
+		#action36-blurb_1500{
+			position:absolute;
+			left:1230px;
+			top:60px;
+		}
+		
+		#action37-blurb_1500{
+			position:absolute;
+			left:1230px;
+			top:450px;
+		}
+		
+		
+		
+		
+		
+		#partners{
+			width:70%;
+		}
+		
+	.nav_button:hover{
+		opacity:0.6;
+	}
+
+	#journeybanner{
+		width:60%;
+		margin-left:auto; 
+		margin-right:auto;
+	}
+	
+	#messaging{
+		margin:2%;
+	}
+	
+	#preregister{
+		display:none;
+
+	}
+	
+	.mobile_nav{
+		display:none;
+	}
+	
+	#outer_prereg{
+		 position:relative; 
+		 width:600px; 
+		 height:340px;
+	}
+	
+	#inner_prereg{
+		width:600px; 
+		height:355px; 
+		overflow:hidden; 
+		position:relative; 
+		border:2px solid #478afb;
+	}
+</style>
+
+<!--mobile style-->
+<style>
+	@media(max-width:710px){
+	
+		#outer_rereg{
+			height:450px;
+		}
+		
+		#inner_prereg{
+			height:445px;
+		}
+		.nav_buttons{
+			width:60%;
+		}
+		#journeybanner{
+			width:100%;
+		}
+		#map-640{
+			width:100%;
+			display:block;
+			position:relative;
+		}
+
+		
+		#journeybanner{
+			width:90%;
+		}
+		
+		.journey{
+			display:none;
+		}
+		
+		.mobile{
+			display:block;
+		}
+		
+		.desktop{
+			display:none;
+		}
+		
+		.nav_button{
+			width:45%;
+			margin-bottom:6px;
+		}
+		
+		.comp{
+			display:none;
+		}
+		
+		.journey_title{
+			color:white;
+			padding:5%;
+			margin-right:5%;
+			margin-left:5%;
+			font-weight:bold;
+			font-size:20px;
+			border-radius:10px;
+			text-align:left;
+			 background-color: rgb(0, 0, 0);
+   			 /* RGBa with 0.6 opacity */
+    		background-color: rgba(0, 0, 0, 0.7);
+    		/* For IE 5.5 - 7*/
+    		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000, endColorstr=#000000);
+    		/* For IE 8*/
+    		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#0000000, endColorstr=#000000)";
+
+		}
+		.desktop{
+			display:none;
+		}
+
+		
+		#mobileactions{
+			display:block;
+			background: url('http://www.globalpovertyproject.com/wp-content/uploads/2014/07/mobilebck1.png'); 
+ 			background-size:cover;
+ 			background-repeat:no-repeat;
+ 			background-position: 0px 0px;
+ 		 	width:100%;
+ 		 	height:500px;
+			border:#262626 3px solid;
+			overflow: scroll;
+		 }
+		 
+		 .instruct{
+		 	margin-left:2%;
+		 	margin-right:2%;
+		 }
+		}
+		
+			.action_button{
+		color:white;
+		margin-left:10%;
+		margin-right:10%;
+		border-radius:2px;
+		margin-bottom:15px;
+		font-weight:bold;
+		padding-top:10px;
+		font-size:17px;
+		text-align:left;
+		padding:10px;
+		padding-top:20px;
+		padding-bottom:20px;
+		position:relative;
+		 background-color: rgb(230, 0, 0);
+   		 /* RGBa with 0.6 opacity */
+    	background-color: rgba(230, 0, 0, 0.7);
+    	/* For IE 5.5 - 7*/
+    	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff0000, endColorstr=#ff0000);
+    	/* For IE 8*/
+    	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff0000, endColorstr=#ff0000)";
+	}
+	
+	.action_button:after {
+	  content: '';
+	  position: absolute;
+	  top: 0px;
+	  left: 100%;
+	  width: 0;
+	  height: 0;
+	  border: 30px solid transparent;
+	  border-left: 12px solid #e60000;
+	  opacity:0.7;
+
+}
+
+	.mobile_nav{
+		padding:3%;
+		width:40%;
+		display:inline-block;
+		background-color:#be0606;
+  		color:white;
+  		font-weight:bold;
+  		margin:1%;
+  		margin-bottom:3%;
+  		font-size:1.1em;
+  		-webkit-text-stroke: 1px white;
+  		border-radius:5px;
+  		box-shadow:5px 5px 5px #6d0303;
+	}
+	}
+</style>
+
+
+<body onload="adjust()" style="width:100%;">
+
+<img class="desktop" src="http://i.imgur.com/SGwDsqo.jpg" style="width:100%;" alt="The Global Citizen Festival, September 27th in Central Park"/>
+<img class="mobile" id="mobilebanner" src="http://dqk9frulcisr8.cloudfront.net/F7DE9FF0-71BA-42B9-9606-1C03B26FA35B/f4908b62-ae36-452e-95c5-00ef7f5d922f.jpg" style="width:100%;" />
+<center>
+
+
+<img class="desktop" src="http://i.imgur.com/VLFSjf1.jpg" style="width:100%;"/>
+
+<div id="social" style="clear:both;">
+<div style="display:inline-block; margin-right:3%;">
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://globalcitizen.org/festival" data-text="Very excited to be part of the 2014 #GlobalCitizenFestival. Take action, win tickets: www.globalcitizenfestival.com" data-size="large" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+
+<div style="display:inline-block; margin-left:3%;">
+<a target="_blank" href="http://www.facebook.com/sharer.php?u=http://www.globalcitizen.org/festival">
+<img src="http://i.imgur.com/h271rhG.jpg?1" style="width:80px;"/></a>
+</div>
+
+</div>
+<br />
+</center>
+
+<center>
+
+
+	<div class="mobile">
+		<a style="color:white;" href="http://www.ticketmaster.com/event/00004CE19804DCA0?brand=gcf"><div class="mobile_nav">VIP <br />Tickets</div></a>
+		<a href="/livestream"><div class="mobile_nav">Watch the livestream</div></a><br />
+		<a href="#holder"><div class="mobile_nav">Earn Free <br/ >Tickets</div></a>
+		<a href="/impack"><div class="mobile_nav">Buy <br />Action Pack</div></a><br />
+		<a href="/waislitzaward"><div class="mobile_nav">Waislitz <br />Award</div></a>
+		<a href="#messaging"><div onclick="$('#messaging').slideToggle()" id="about_mobile" class="mobile_nav" ><br />About</div></a>
+			<div class="mobile" id="messaging" style="display:none;">
+			Thanks to a global effort, we can the generation to end extreme poverty by 2030. 
+Join us in taking action as a Global Citizen, together we can continue this progress. 
+<br /><br />
+			<a href="/festival_terms">For more information, check out our FAQ and Terms and Conditions.</a>
+			
+			</div>
+
+			
+	
+	</div>
+<!--nav buttons-->
+<div id="navigation" style="width:100%;"> 
+	<a style="color:white;" href="http://www.ticketmaster.com/event/00004CE19804DCA0?brand=gcf"><div class="nav_button desktop"><img src="http://i.imgur.com/OZ0y5AA.jpg" style="width:90%;"/></div></a>
+	<a href="/livestream"><div class="nav_button desktop"><img src="http://i.imgur.com/ENwbrk6.png" style="width:95%;"/></div></a>
+	<a href="/waislitzaward"><div class="nav_button desktop"><img src="http://i.imgur.com/3fBBIbO.png" style="width:95%;"/></div></a>
+	<a style="color:white;" href="http://www.globalcitizen.org/impack"><div class="nav_button desktop"><img src="http://i.imgur.com/d0b1Qdv.jpg" style="width:85%;"/></div></a>
+	<a style="color:white;" href="http://www.globalcitizen.org/festival_faqs"><div class="nav_button desktop"><img src="http://i.imgur.com/qHPFoIO.png" style="width:96%;"/></div> </a>
+
+	<br /><br />
+</div>
+
+<div id="preregister">
+	<div id="outer_prereg">
+	<img onclick="preregister()" style="position:absolute; top:-15px; right:-15px; width:8%; z-index:1;" src="http://i.imgur.com/kCRBXYX.png" />
+	
+	<div id="inner_prereg">
+			
+
+		<iframe  src="https://docs.google.com/a/globalpovertyproject.com/forms/d/1t00M_FXGgeUwKtCF_We0zwzUmbJyLAr3lydkltXnbpM/viewform" style="width:100%; height:500px; position:absolute; top:-50px; left:-20px; border:none;" frameborder="0"></iframe>
+	</div>
+	</div>
+</div>
+
+
+<br class="desktop"/><br class="desktop"/>
+<div style="font-size:22px;">
+All general admission tickets have been distributed, but you can still be a part of the Global Citizen Festival by <a href="#holder" style="color:#be0606;">taking the actions below</a>,  <a href="/impack" style="color:#be0606;">buying the Impack</a>, or tuning in on <a href="" style="color:#be0606;">MSNBC</a> or <a href="" style="color:#be0606;">NBC</a></div>
+<br /><br />
+
+
+	<div class="instruct" style="font-size:18px; font-weight:bold;">
+	Join the movement <br/>
+	
+	<div class="search_panel remove_bg">
+	<div class="search_input">
+		<input style="border:red solid 1px;" id="signUp_box" class="home_page_signup case_sensitive" placeholder="ENTER EMAIL TO SIGNUP" onkeypress="javascript:onEnterSubmit(event,'signUpBtn');" type="text">
+		<div id="signUpBtn" class="search_go" onclick="CheckEmailExist('signUp_box');">Go</div>
+	</div>
+</div>
+
+	<input class="mobile_view btn" id="mombileLoginBtn" onclick="javascript:OpenSignUpFromLogIn();" type="button" value="Sign Up" /><br class="mobile"/><br class="mobile"/>
+	</div>
+	
+	<br />
+
+	<hr id="holder"/><br />
+	<span style="font-size:1.2em">Take the Global Citizen Festival 2014 action journey and earn points for <a href="/tickets" style="color:#be0606;">awesome shows in your home town</a>. </span><br /><br />
+<div style="clear:both;" class="desktop">
+<a class="journeybutton" href="#map1"><img onclick="uncrumple('0')" class="journeyimg active" src="http://i.imgur.com/MUsWT5U.png" /></a>
+
+<a class="journeybutton" id="journey2" href="#crumpled"><img onclick="uncrumple('1')"  class="journeyimg active" src="http://i.imgur.com/JbAXbjc.jpg"/></a>
+<a class="journeybutton" href="#crumpled2"><img onclick="uncrumple('2');" class="journeyimg active" src="http://i.imgur.com/lkfyTlx.jpg"/></a>
+
+<a class="journeybutton" href="#crumpled3"><img onclick="uncrumple('3');" class="journeyimg active" src="http://i.imgur.com/7fVb32h.jpg"/></a>
+
+<a class="journeybutton" href="#crumpled4"><img onclick="uncrumple('4');" class="journeyimg active" src="http://i.imgur.com/yhEpBOv.png"/></a>
+</div>
+
+</center>
+
+<center>
+<div id="map-640" class="map">
+
+
+	<div id="mobileactions" >
+			<br /><br />
+			
+			<h2 class="journey_title" id="journey1_title">Action Journey 1</h2>
+			<div id="journey1" class="journey"><br />
+				<a class="action1" href=""><div class="action_button blurb1" >Action 1</div></a><br />
+				<a class="action2" href=""><div class="action_button blurb2">Action 2</div></a><br />
+				<a class="action3" href=""><div class="action_button blurb3">Action 3</div></a><br />
+				<a class="action4" href=""><div class="action_button blurb4">Action 4</div></a><br />
+				<a class="action5" href=""><div class="action_button blurb5">Action 5</div></a><br />
+				<a class="action6" href=""><div class="action_button blurb6">Action 6</div></a><br />
+				<a class="action7" href=""><div class="action_button blurb7">Action 7</div></a><br />
+				<a class="action8" href=""><div class="action_button blurb8">Action 8</div></a><br />
+			</div>
+			<br />
+			<h2 class="journey_title" id="journey2_title">Action Journey 2</h2>
+			<div id="journey2_mobile" class="journey"><br />
+				<a class="action9" href=""><div class="action_button action9_sml blurb9">Action 1</div></a><br />
+				<a class="action10" href=""><div class="action_button action10_sml blurb10">Action 2</div></a><br />
+				<a class="action11" href=""><div class="action_button action11_sml blurb11">Action 3</div></a><br />
+				<a class="action12" href=""><div class="action_button action12_sml blurb12">Action 4</div></a><br />	
+				<a class="action13" href=""><div class="action_button action13_sml blurb13">Action 5</div></a><br />
+				<a class="action14" href=""><div class="action_button action14_sml blurb14">Action 6</div></a><br />
+				<a class="action15" href=""><div class="action_button action15_sml blurb15">Action 7</div></a><br />
+				<a class="action16" href=""><div class="action_button action16_sml blurb16">Action 8</div></a><br />	
+			</div>
+			<br />
+			<h2 class="journey_title" id="journey3_title">Action Journey 3</h2>
+			<div id="journey3_mobile" class="journey"><br />
+				<a class="action17" href=""><div class="action_button action17_sml blurb17">Action 1</div></a><br />
+				<a class="action18" href=""><div class="action_button action18_sml blurb18">Action 2</div></a><br />
+				<a class="action19" href=""><div class="action_button action19_sml blurb19">Action 3</div></a><br />
+				<a class="action20" href=""><div class="action_button action20_sml blurb20">Action 4</div></a><br />	
+				<a class="action21" href=""><div class="action_button action21_sml blurb21">Action 5</div></a><br />
+	
+			</div>
+			<Br />
+			<h2 class="journey_title" id="journey4_title">Action Journey 4</h2>
+			<div id="journey4_mobile" class="journey"><br />
+				<a class="action22" href=""><div class="action_button action22_sml blurb22">Action 1</div></a><br />
+				<a class="action23" href=""><div class="action_button action23_sml blurb23">Action 2</div></a><br />
+				<a class="action24" href=""><div class="action_button action24_sml blurb24">Action 3</div></a><br />
+				<a class="action25" href=""><div class="action_button action25_sml blurb25">Action 4</div></a><br />	
+				<a class="action26" href=""><div class="action_button action26_sml blurb26">Action 5</div></a><br />
+				
+				<a class="action27" href=""><div class="action_button action27_sml blurb27">Action 5</div></a><br />
+	
+			</div><br />
+			
+			<h2 class="journey_title" id="journey5_title">Action Journey 5</h2>
+			<div id="journey5_mobile" class="journey"><br />
+				<a class="action28" href=""><div class="action_button action28_sml blurb28">Action 1</div></a><br />
+				<a class="action29" href=""><div class="action_button action29_sml blurb29">Action 2</div></a><br />
+				<a class="action30" href=""><div class="action_button action30_sml blurb30">Action 3</div></a><br />
+				<a class="action31" href=""><div class="action_button action31_sml blurb31">Action 4</div></a><br />
+				<a class="action32" href=""><div class="action_button action32_sml blurb32">Action 5</div></a><br />
+				<a class="action33" href=""><div class="action_button action33_sml blurb33">Action 6</div></a><br />
+				<a class="action34" href=""><div class="action_button action34_sml blurb34">Action 7</div></a><br />
+				<a class="action35" href=""><div class="action_button action35_sml blurb35">Action 8</div></a><br />
+				<a class="action36" href=""><div class="action_button action36_sml blurb36">Action 9</div></a><br />
+				<a class="action37" href=""><div class="action_button action37_sml blurb37">Action 10</div></a><br />
+	
+			</div>
+
+			
+	</div>
+</div>
+<div class="desktop">
+
+<!--Journey 1-->
+<div id="crumpled"  onclick="uncrumple('0'); adjust();" >
+	<a href="#map1"><img id="crumpled_image" src="http://i.imgur.com/SdnHGtE.png" style="width:100%; margin-left:-13px; margin-top:-5px; max-width:1611px; margin-bottom:-17px;"/></a>
+
+	<div id="crumple_blurb" style="text-align:center;">
+		<br /><br /><br />View the first 8 actions here
+	</div>
+</div>
+
+<div class="journey1" id="map1" style="position:relative; ">
+<img src="http://i.imgur.com/b2Bo3WX.jpg" style="width:93.5%; height:auto; max-width:1500px;" alt="map1" id="image_map1" usemap="#map1-big" class="map">
+
+<a class="action1" href=""><div onMouseOver="isHovering(1)" onmouseout="hide('action1-blurb_1500',1); isHovering('')" id="action1-blurb_1500" class="blurb blurb1">
+			Placeholder
+		</div></a>
+		
+		<a class="action2" href=""><div onMouseOver="isHovering(2)" onmouseout="hide('action2-blurb_1500',2); isHovering('')" id="action2-blurb_1500" class="blurb blurb2">
+			Placeholder
+		</div></a>
+		
+		<a class="action3" href=""><div onMouseOver="isHovering(3)" onmouseout="hide('action3-blurb_1500',3); isHovering('')" id="action3-blurb_1500" class="blurb blurb3">
+			Placeholder
+		</div></a>
+		
+		<a class="action4" href=""><div onMouseOver="isHovering(4)" onmouseout="hide('action4-blurb_1500',4); isHovering('')" id="action4-blurb_1500" class="blurb blurb4">
+			Placeholder
+		</div></a>
+	
+	
+		</div>
+		
+	<map name="map1-big">
+		<area id="action1" class="action action1" onMouseOver="show('action1-blurb_1500',1); isHovering(1)" onmouseout="hide('action1-blurb_1500', 1); isHovering('')" shape="circle" coords="250 231 62" href="">
+		<area class="action action2" onMouseOver="show('action2-blurb_1500',1); isHovering(2)" onmouseout="hide('action2-blurb_1500', 2); isHovering('')" id="action2" shape="circle" coords="786 114 62" href="">
+		<area class="action action3" onMouseOver="show('action3-blurb_1500',3); isHovering(3)" onmouseout="hide('action3-blurb_1500',3); isHovering('')" id="action3" shape="circle" coords="1110 405 62" href="">
+		<area class="action action4" onMouseOver="show('action4-blurb_1500',4); isHovering(4)" onmouseout="hide('action4-blurb_1500',4); isHovering('')" id="action4" shape="circle" coords="407 443 62" href="">
+		<area class="impack other" id="impack1" onMouseOver="$('#impack1').css('display','block');"  shape="circle" coords="1360 200 100" href="">
+		<area class="impack other" id="impack2" shape="circle" coords="700, 580,100" href="">
+		<area class="zp2030 other" id="zp2030" shape="circle" coords="990, 120, 100" href="">
+	</map>
+<div class="journey1" id="map2" style="position:relative;">
+<img src="http://i.imgur.com/qVBbgV5.jpg" style="width:93.5%; height:auto; margin-top:-1px; max-width:1500px; margin-bottom:1px;"  alt="map2" usemap="#map2-big" class="map" id="image_map2">
+<a class="action5"><div onMouseOver="isHovering('action5-blurb_1500')" onmouseout="hide('action5-blurb_1500')" id="action5-blurb_1500" class="blurb blurb5">
+			Placeholder
+		</div></a>
+		
+		<a class="action6" href=""><div onMouseOver="isHovering(6)" onmouseout="hide('action6-blurb_1500',6); isHovering('')" id="action6-blurb_1500" class="blurb blurb6">
+			Placeholder
+		</div></a>
+		
+		<a class="action7" href=""><div onMouseOver="isHovering(7)" onmouseout="hide('action7-blurb_1500',7); isHovering('')" id="action7-blurb_1500" class="blurb blurb7">
+			Placeholder
+		</div></a>
+		
+		<a class="action8" href=""><div onMouseOver="isHovering(8)" onmouseout="hide('action8-blurb_1500',8);isHovering('')" id="action8-blurb_1500" class="blurb blurb8">
+			Placeholder
+		</div></a>
+
+</div>
+<map name="map2-big">
+		<area class="action5 action" onMouseOver="show('action5-blurb_1500',5); isHovering(5)" onmouseout="hide('action5-blurb_1500',5);isHovering('')" id="action5" shape="circle" coords="225 184 62" href="">
+		<area class="action6 action" onMouseOver="show('action6-blurb_1500');isHovering(6)" onmouseout="hide('action6-blurb_1500',6);isHovering('')" id="action6" shape="circle" coords="489 435 62" href="">
+		<area class="action7 action" onMouseOver="show('action7-blurb_1500');isHovering(7)" onmouseout="hide('action7-blurb_1500',7);isHovering('')" id="action7" shape="circle" coords="862 139 62" href="">
+		<area class="action8 action"onMouseOver="show('action8-blurb_1500');isHovering(8)" onmouseout="hide('action8-blurb_1500',8);isHovering('')" id="action8" shape="circle" coords="1330 380 62" href="">
+		<area class="impack other" id="impack3" shape="circle" coords="650, 100, 100" href="">
+	</map>
+	
+<!--begin action journey #2-->
+<div id="crumpled2"  onclick="uncrumple('0'); adjust();" >
+	<a href="#map1"><img id="crumpled_image" src="http://i.imgur.com/v3PHPcW.png" style="width:100%; margin-left:-7px; margin-top:-5px; max-width:1611px; margin-bottom:0px;"/></a>
+</div>
+
+<div id="map3" class="journey2" style="position:relative;">
+
+<img src="http://i.imgur.com/63a5dnb.jpg" style="width:93.5%; height:auto; margin-top:-2px; max-width:1500px"  alt="map3" usemap="#map3-big" class="map" id="image_map3">
+
+	<a class="action9" href=""><div onMouseOver="isHovering('9')" onmouseout="hide('action9-blurb_1500', 9)" id="action9-blurb_1500" class="blurb blurb9">
+			Placeholder
+		</div></a>
+		
+	<a class="action10" href=""><div onMouseOver="isHovering('10')" onmouseout="hide('action10-blurb_1500',10)" id="action10-blurb_1500" class="blurb blurb10">
+			Placeholder
+		</div></a>
+	<a class="action11" href=""><div onMouseOver="isHovering('11')" onmouseout="hide('action11-blurb_1500'),11" id="action11-blurb_1500" class="blurb blurb11">
+			Placeholder
+		</div></a>
+	<a class="action12" href=""><div onMouseOver="isHovering('12')" onmouseout="hide('action12-blurb_1500'),12" id="action12-blurb_1500" class="blurb blurb12">
+			Placeholder
+		</div></a>
+	</div>	
+<map name="map3-big">
+		<area class="action9 action" onMouseOver="show('action9-blurb_1500',9); isHovering('9')" onmouseout="hide('action9-blurb_1500',9);isHovering('')" id="action9" shape="circle" coords="670 120 62" href="">
+		<area class="action10 action" onMouseOver="show('action10-blurb_1500',10);isHovering('10')" onmouseout="hide('action10-blurb_1500',10);isHovering('')" id="action10" shape="circle" coords="1280 120 62" href="">
+		<area class="action11 action" onMouseOver="show('action11-blurb_1500', 11);isHovering('11')" onmouseout="hide('action11-blurb_1500',11);isHovering('')" id="action11" shape="circle" coords="975 375 62" href="">
+		<area class="action12 action" onMouseOver="show('action12-blurb_1500', 12);isHovering('12')" onmouseout="hide('action12-blurb_1500',12);isHovering('')" id="action12" shape="circle" coords="150 293 62" href="">
+		<area class="tiesto other" shape="circle" coords="1150 250 100" href="">
+		<area class="impack other" shape="circle" coords="1300 500 100" href="">
+</map>
+<div id="map4" style="position:relative;" class="journey2">
+<img src="http://i.imgur.com/YTnNfv4.jpg" style="width:93.5%; height:auto; margin-top:-1px; max-width:1500px; position:relative;"  alt="map4" usemap="#map4-big" class="map" id="image_map4">
+
+	<a class="action13" href=""><div onMouseOver="isHovering('13')" onmouseout="hide('action13-blurb_1500', 13)" id="action13-blurb_1500" class="blurb blurb13">
+			Placeholder
+		</div></a>
+		
+	<a class="action14" href=""><div onMouseOver="isHovering('14')" onmouseout="hide('action14-blurb_1500',14)" id="action14-blurb_1500" class="blurb blurb14">
+			Placeholder
+		</div></a>
+	<a class="action15" href=""><div onMouseOver="isHovering('15')" onmouseout="hide('action15-blurb_1500'),15" id="action15-blurb_1500" class="blurb blurb15">
+			Placeholder
+		</div></a>
+	<a class="action16" href=""><div onMouseOver="isHovering('16')" onmouseout="hide('action16-blurb_1500'),16" id="action16-blurb_1500" class="blurb blurb16">
+			Placeholder
+		</div></a>
+
+</div>
+<map name="map4-big">
+		<area class="action13 action" onMouseOver="show('action13-blurb_1500',13); isHovering('13')" onmouseout="hide('action13-blurb_1500',13);isHovering('')" id="action13" shape="circle" coords="850 150 62" href="">
+		<area class="action14 action" onMouseOver="show('action14-blurb_1500',14);isHovering('14')" onmouseout="hide('action14-blurb_1500',14);isHovering('')" id="action14" shape="circle" coords="240 205 62" href="">
+		<area class="action15 action" onMouseOver="show('action15-blurb_1500', 15);isHovering('15')" onmouseout="hide('action15-blurb_1500',15);isHovering('')" id="action15" shape="circle" coords="490 490 62" href="">
+		<area class="action16 action" onMouseOver="show('action16-blurb_1500', 16);isHovering('16')" onmouseout="hide('action16-blurb_1500',16);isHovering('')" id="action16" shape="circle" coords="1170 300 62" href="">
+		<area class="impack other" shape="circle" coords="1300 0 100" href="">
+		<area class="impack other" shape="circle" coords="1170 490 100" href="">
+		<area class="impack other" shape="circle" coords="230 160 100" href="">
+
+</map>
+
+<!--begin action journey #3-->
+<div id="map5" style="position:relative;" class="journey3">
+
+<img src="http://i.imgur.com/DrKtkaM.jpg" style="width:93.5%; height:auto; margin-top:-19px; max-width:1500px; "  alt="map5" usemap="#map5-big" class="map" id="image_map5">
+
+	<a class="action17" href=""><div onMouseOver="isHovering('17')" onmouseout="hide('action17-blurb_1500',17)" id="action17-blurb_1500" class="blurb blurb17">
+			Placeholder
+		</div></a>
+		
+	<a class="action18" href=""><div onMouseOver="isHovering('18')" onmouseout="hide('action18-blurb_1500',18)" id="action18-blurb_1500" class="blurb blurb18">
+			Placeholder
+		</div></a>
+	<a class="action19" href=""><div onMouseOver="isHovering('19')" onmouseout="hide('action19-blurb_1500'),19" id="action19-blurb_1500" class="blurb blurb19">
+			Placeholder
+		</div></a>
+	<a class="action20" href=""><div onMouseOver="isHovering('20')" onmouseout="hide('action20-blurb_1500'),20" id="action20-blurb_1500" class="blurb blurb20">
+			Placeholder
+		</div></a>
+	</div>
+	
+<map name="map5-big">
+		<area class="action17 action" onMouseOver="show('action17-blurb_1500',17); isHovering('17')" onmouseout="hide('action17-blurb_1500',17);isHovering('')" id="action17" shape="circle" coords="1270 90 62" href="">
+		<area class="action18 action" onMouseOver="show('action18-blurb_1500',18);isHovering('18')" onmouseout="hide('action18-blurb_1500',18);isHovering('')" id="action18" shape="circle" coords="1300 390 62" href="">
+		<area class="action19 action" onMouseOver="show('action19-blurb_1500', 19);isHovering('19')" onmouseout="hide('action19-blurb_1500',19);isHovering('')" id="action19" shape="circle" coords="698 150 62" href="">
+		<area class="action20 action" onMouseOver="show('action20-blurb_1500', 20);isHovering('20')" onmouseout="hide('action20-blurb_1500',20);isHovering('')" id="action20" shape="circle" coords="360 470 62" href="">
+		<area class="impack other" shape="circle" coords="190 100 100" href="">
+		<area class="hope other" shape="circle" coords="670 390 100" href="">
+
+</map>
+<!-- journey 4-->
+<div id="crumpled3">
+<img src="http://i.imgur.com/tPsgv1w.jpg" style="width:100%; max-width:1605px; margin-left:-5px;"/>
+
+</div>
+
+<div id="map6" style="position:relative;" class="journey4">
+
+<img src="http://i.imgur.com/qnipw4u.jpg" style="width:93.5%; height:auto; margin-top:-3px; max-width:1500px"  alt="map6" usemap="#map6-big" class="map" id="image_map6">
+
+	<a class="action21" href=""><div onMouseOver="isHovering('21')" onmouseout="hide('action21-blurb_1500', 21)" id="action21-blurb_1500" class="blurb blurb21">
+			Placeholder
+		</div></a>
+		
+		<a class="action22" href=""><div onMouseOver="isHovering('22')" onmouseout="hide('action22-blurb_1500', 22)" id="action22-blurb_1500" class="blurb blurb22">
+			Placeholder
+		</div></a>
+		
+		<a class="action23" href=""><div onMouseOver="isHovering('23')" onmouseout="hide('action23-blurb_1500', 23)" id="action23-blurb_1500" class="blurb blurb23">
+			Placeholder
+		</div></a>
+		
+	</div>
+
+<map name="map6-big">
+		<area class="action21 action" onMouseOver="show('action21-blurb_1500',21); isHovering('21')" onmouseout="hide('action21-blurb_1500',21);isHovering('')" id="action21" shape="circle" coords="310 330 62" href="">
+		<area class="selfie other" shape="circle" coords="200 0 100" href="">
+		
+		<!--start action journey #4-->
+		<area class="action22 action" onMouseOver="show('action22-blurb_1500',22); isHovering('22')" onmouseout="hide('action22-blurb_1500',22);isHovering('')" id="action22" shape="circle" coords="815 160 62" href="">
+		<area class="action23 action" onMouseOver="show('action23-blurb_1500',23); isHovering('23')" onmouseout="hide('action23-blurb_1500',23);isHovering('')" id="action23" shape="circle" coords="1200 460 62" href="">
+
+</map>
+<div id="map7" style="position:relative;" class="journey4">
+
+<img src="http://i.imgur.com/9E1lE4E.jpg" style="width:93.5%; height:auto; margin-top:-1px; max-width:1500px; "  alt="map5" usemap="#map7-big" class="map" id="image_map7">
+
+	<a class="action24" href=""><div onMouseOver="isHovering('24')" onmouseout="hide('action24-blurb_1500',24)" id="action24-blurb_1500" class="blurb blurb24">
+			Placeholder
+		</div></a>
+		
+	<a class="action25" href=""><div onMouseOver="isHovering('25')" onmouseout="hide('action25-blurb_1500',25)" id="action25-blurb_1500" class="blurb blurb25">
+			Placeholder
+		</div></a>
+	<a class="action27" href=""><div onMouseOver="isHovering('27')" onmouseout="hide('action27-blurb_1500'),27" id="action27-blurb_1500" class="blurb blurb27">
+			Placeholder
+		</div></a>
+	
+	</div>
+	
+<map name="map7-big">
+		<area class="action24 action" onMouseOver="show('action24-blurb_1500',24); isHovering('24')" onmouseout="hide('action24-blurb_1500',24);isHovering('')" id="action24" shape="circle" coords="750 150 62" href="">
+		<area class="action25 action" onMouseOver="show('action25-blurb_1500',25);isHovering('25')" onmouseout="hide('action25-blurb_1500',25);isHovering('')" id="action25" shape="circle" coords="1310 340 62" href="">
+		
+		<area class="action27 action" onMouseOver="show('action27-blurb_1500', 27);isHovering('27')" onmouseout="hide('action27-blurb_1500',27);isHovering('')" id="action27" shape="circle" coords="250 330 62" href="">
+		<area class="impack other" shape="circle" coords="1400 100 100" href="">
+
+</map>
+<div id="crumpled4">
+	<img src="http://i.imgur.com/Eu3DnNy.png" style="width:100%; max-width:1605px; margin-left:-5px;"/>
+</div>
+<!--Journey 5 begins-->
+<div id="map8" style="position:relative; margin-top:-2px;" class="journey5">
+
+<img src="http://i.imgur.com/mIEqHBR.png" style="width:93.5%; height:auto; margin-top:-1px; max-width:1500px; "  alt="map5" usemap="#map8-big" class="map" id="image_map8">
+
+	<a class="action26" href=""><div onMouseOver="isHovering('26')" onmouseout="hide('action26-blurb_1500',26)" id="action26-blurb_1500" class="blurb blurb26">
+			Placeholder
+		</div></a>
+		
+		<a class="action28" href=""><div onMouseOver="isHovering('28')" onmouseout="hide('action28-blurb_1500',28)" id="action28-blurb_1500" class="blurb blurb28">
+			Placeholder
+		</div></a>
+		
+		<a class="action31" href=""><div onMouseOver="isHovering('31')" onmouseout="hide('action31-blurb_1500',31)" id="action31-blurb_1500" class="blurb blurb31">
+			Placeholder
+		</div></a>
+		
+		<a class="action33" href=""><div onMouseOver="isHovering('33')" onmouseout="hide('action33-blurb_1500',33)" id="action33-blurb_1500" class="blurb blurb33">
+			Placeholder
+		</div></a>
+		
+		<a class="action35" href=""><div onMouseOver="isHovering('35')" onmouseout="hide('action35-blurb_1500',35)" id="action35-blurb_1500" class="blurb blurb35">
+			Placeholder
+		</div></a>
+		
+		
+		
+	
+	</div>
+	
+<map name="map8-big">
+		<area class="action26 action" onMouseOver="show('action26-blurb_1500', 26);isHovering('26')" onmouseout="hide('action26-blurb_1500',26);isHovering('')" id="action26" shape="circle" coords="800 100 62" href="">
+		<area class="action28 action" onMouseOver="show('action28-blurb_1500',28); isHovering('28')" onmouseout="hide('action28-blurb_1500',28);isHovering('');" id="action28" shape="circle" coords="270 300 62" href="">
+		<area class="action31 action" onMouseOver="show('action31-blurb_1500',31); isHovering('31')" onmouseout="hide('action31-blurb_1500',31);isHovering('');" id="action31" shape="circle" coords="650 435 62" href="">
+		<area class="action33 action" onMouseOver="show('action33-blurb_1500',33); isHovering('33')" onmouseout="hide('action33-blurb_1500',33);isHovering('');" id="action33" shape="circle" coords="970 470 62" href="">
+		<area class="action35 action" onMouseOver="show('action35-blurb_1500',35); isHovering('35')" onmouseout="hide('action35-blurb_1500',35);isHovering('');" id="action35" shape="circle" coords="1180 250 62" href="">
+
+</map>
+<div id="map9" style="position:relative;" class="journey5">
+	<img src="http://i.imgur.com/dlR3czx.png" style="width:93.5%; height:auto; max-width:1500px;" alt="map8" usemap="#map9-big" class="map" id="image_map9">
+	
+	<a class="action29" href=""><div onMouseOver="isHovering('29')" onmouseout="hide('action29-blurb_1500',29)" id="action29-blurb_1500" class="blurb blurb29">
+			Placeholder
+		</div></a>
+		
+		<a class="action32" href=""><div onMouseOver="isHovering('32')" onmouseout="hide('action32-blurb_1500',32)" id="action32-blurb_1500" class="blurb blurb32">
+			Placeholder
+		</div></a>
+		
+		<a class="action34" href=""><div onMouseOver="isHovering('34')" onmouseout="hide('action34-blurb_1500',34)" id="action34-blurb_1500" class="blurb blurb34">
+			Placeholder
+		</div></a>
+		
+		<a class="action36" href=""><div onMouseOver="isHovering('36')" onmouseout="hide('action36-blurb_1500',36)" id="action36-blurb_1500" class="blurb blurb36">
+			Placeholder
+		</div></a>
+		
+		<a class="action37" href=""><div onMouseOver="isHovering('37')" onmouseout="hide('action37-blurb_1500',37)" id="action37-blurb_1500" class="blurb blurb37">
+			Placeholder
+		</div></a>
+</div>
+<map name="map9-big">
+		<area class="action29 action" onMouseOver="show('action29-blurb_1500', 29);isHovering('29')" onmouseout="hide('action29-blurb_1500',29);isHovering('')" id="action29" shape="circle" coords="310 90 62" href="">
+		
+		<area class="action32 action" onMouseOver="show('action32-blurb_1500', 32);isHovering('32')" onmouseout="hide('action32-blurb_1500',32);isHovering('')" id="action32" shape="circle" coords="650 170 62" href="">
+		
+		<area class="action34 action" onMouseOver="show('action34-blurb_1500', 34);isHovering('34')" onmouseout="hide('action34-blurb_1500',34);isHovering('')" id="action34" shape="circle" coords="870 400 62" href="">
+		
+		<area class="action36 action" onMouseOver="show('action36-blurb_1500', 36);isHovering('36')" onmouseout="hide('action36-blurb_1500',26);isHovering('')" id="action36" shape="circle" coords="1230 60 62" href="">
+		
+		<area class="action37 action" onMouseOver="show('action37-blurb_1500', 37);isHovering('37')" onmouseout="hide('action37-blurb_1500',37);isHovering('')" id="action37" shape="circle" coords="1230 450 62" href="">
+
+</map>
+
+<div id="map10" style="position:relative;" class="journey5">
+	<img src="http://i.imgur.com/kXxhGur.png" style="width:93.5%; max-width:1500px; height:auto;" alt="map9" usemap="#map10-big" class="map" id="image_map10">
+	
+	<a class="action30" href=""><div onMouseOver="isHovering('30')" onmouseout="hide('action30-blurb_1500',30)" id="action30-blurb_1500" class="blurb blurb30">
+			Placeholder
+		</div></a>
+</div>
+
+<map name="map10-big">
+	<area class="action30 action" onMouseOver="show('action30-blurb_1500', 30);isHovering('30')" onmouseout="hide('action30-blurb_1500',30);isHovering('')" id="action30" shape="circle" coords="370 60 62" href="">
+</map>
+
+<a href="http://www.globalcitizen.org/Rewards/RewardDetail.aspx?rid=be4c3f45-fb6f-42e2-be23-fb2cb16a3fa4"><img src="http://i.imgur.com/7pTIRoV.jpg" style="width:93.5%; height:auto; margin-top:0px; margin-left:0px; max-width:1500px;" class="map" id="bottom"></a>
+</div>
+
+
+<div id="partners" style="margin-top:-10px;">
+<img src="http://i.imgur.com/VRymOEV.jpg" style="max-width:1000px; width:100%;"/>
+</div><br />
+</center>
+</body>
+
+
+<!--MORE SCRIPTS!-->
+<!--crumples-->
+
+<script>
+	var crumpled=0;
+	//crumple and uncrumple the first journey
+	function uncrumple(num){
+	console.log(crumpled);
+		if(num==0){
+			console.log("at 0");
+			//uncrumple all journeys
+			
+			//if journey 2 was showing
+			if(crumpled==0){
+				$("#journey1").attr('href','#map1');
+			}else{
+				$(".journey1").slideToggle("slow");
+				$(".journey1").css('display','block');
+				$(".journey2").css('display','block');
+				$(".journey3").css('display','block');
+				$(".journey4").css('display','block');
+				
+				//hide all other crumples
+				$("#crumpled4").css('display','none');
+				$("#crumpled3").css('display','none');
+				$("#crumpled2").css('display','none');
+				$("#crumpled").css('display','none');
+				crumpled=0;
+			}
+		}else if (num==1){
+			if(crumpled==1){
+				$("#journey2").attr('href','#map3');
+				
+			}else if(crumpled==0){
+				$("#crumpled").css('display','block');
+				$(".journey1").slideToggle("slow");	
+				$(".journey1").css('display','block');
+
+				$("#crumpled4").css('display','none');
+				crumpled=1;
+				$("#journey2").attr('href','#map1');
+			}else if(crumpled==2){
+				console.log("1, 2");
+
+				$("#crumpled").css('display','block');
+				$(".journey2").slideToggle("slow");
+				$(".journey2").css('display','block');	
+				$(".journey4").css('display','block');	
+
+				$("#crumpled4").css('display','none');
+				$("#crumpled2").css('display','none');
+				$("#crumpled3").css('display','none');
+				
+				crumpled=1;
+					$("#journey2").attr('href','#map1');
+		
+			
+			}else if(crumpled==3){
+				$("#crumpled").css('display','block');
+				$(".journey2").slideToggle("slow");
+				$(".journey2").css('display','block');	
+				$(".journey3").css('display','block');
+				$(".journey4").css('display','block');	
+
+				$("#crumpled4").css('display','none');
+				$("#crumpled2").css('display','none');
+								$("#crumpled3").css('display','none');
+
+				
+				crumpled=1;
+					$("#journey2").attr('href','#map1');
+			}else if(crumpled==4){
+				$("#crumpled").css('display','block');
+				$(".journey2").slideToggle("slow");
+				$(".journey2").css('display','block');	
+				$(".journey3").css('display','block');	
+				$(".journey4").css('display','block');
+
+				$("#crumpled2").css('display','none');
+				$("#crumpled4").css('display','none');
+				$("#crumpled3").css('display','none');
+
+				
+				crumpled=1;
+					$("#journey2").attr('href','#map1');
+			}
+			
+		}else if(num==2){
+			if(crumpled==0){
+				console.log("0");
+				$("#journey3").attr('href','#map1');
+
+				$("#crumpled").css('display','none');
+				$("#crumpled2").css('display','block');
+				$("#crumpled4").css('display','none');
+				$(".journey1").slideToggle("slow");
+				$(".journey2").slideToggle("slow");
+				crumpled=2;
+			}else if(crumpled==1){
+				console.log("1");
+				$("#crumpled2").css('display','block');
+				$("#crumpled").css('display','none');
+				$("#crumpled4").css('display','none');
+				$(".journey1").css('display','none');
+				$(".journey2").css('display','none');
+
+				$(".journey3").css('display','block');
+				$(".journey4").css('display','block');
+			
+					crumpled=2;
+				$("#journey3").attr('href','#map1');
+		
+			}else if(crumpled==2){
+				$("#journey3").attr('href','#map5');
+			}else if(crumpled==3){
+				$("#crumpled2").css('display','block');
+				$("#crumpled").css('display','none');
+				$("#crumpled3").css('display','none');
+				$("#crumpled4").css('display','none');
+
+				$(".journey1").css('display','none');
+				$(".journey2").css('display','none');
+				$(".journey4").css('display','block');
+				$(".journey3").slideToggle("slow");
+					crumpled=2;
+				$("#journey3").attr('href','#map1');
+				
+			}else if(crumpled==4){
+				$("#crumpled2").css('display','block');
+				$("#crumpled").css('display','none');
+				$("#crumpled4").css('display','none');
+				$("#crumpled3").css('display','none');
+
+				$(".journey1").css('display','none');
+				$(".journey2").css('display','none');
+
+				$(".journey3").slideToggle("slow");
+				$(".journey4").css('display','block');
+				$("#journey3").attr('href','#map1');
+				
+				crumpled=2;
+			}
+		}else if(num==3){
+			console.log("here");
+			if(crumpled==0){
+				console.log("0");
+				$("#journey3").attr('href','#map1');
+
+				$("#crumpled").css('display','none');
+				$("#crumpled2").css('display','none');
+				$("#crumpled3").css('display','block');
+				$("#crumpled4").css('display','none');
+				
+				$(".journey1").slideToggle("slow");
+				$(".journey2").slideToggle("slow");
+				$(".journey3").css('display','none');
+				
+				crumpled=3;
+			}else if(crumpled==1){
+			console.log("right?");
+			$("#crumpled2").css('display','none');
+				$("#crumpled").css('display','none');
+				$("#crumpled3").css('display','block');
+				$("#crumpled4").css('display','none');
+
+			$(".journey1").css('display','none');
+			$(".journey2").css('display','none');
+
+				$(".journey3").css('display','none');
+				
+				$(".journey4").css('display','block');
+				
+
+					crumpled=3;
+				$("#journey3").attr('href','#map1');
+			}else if(crumpled==2){
+			$("#crumpled2").css('display','none');
+				$("#crumpled").css('display','none');
+				$("#crumpled4").css('display','none');
+				$("#crumpled3").css('display','block');
+
+			$(".journey1").css('display','none');
+			$(".journey2").css('display','none');
+
+				$(".journey3").css('display','none');
+				$(".journey4").css('display','block');
+				
+
+					crumpled=3;
+				$("#journey3").attr('href','#map1');
+				
+			}else if(crumpled==4){
+				$("#crumpled2").css('display','none');
+				$("#crumpled").css('display','none');
+				$("#crumpled4").css('display','none');
+				$("#crumpled3").css('display','block');
+				
+				$(".journey1").css('display','none');
+				$(".journey2").css('display','none');
+
+				$(".journey3").css('display','none');
+				$(".journey4").css('display','block');
+				
+				crumpled=3;
+			}else if(crumpled==3){
+				$("#journey4").attr('href','#map1');
+			}
+			
+		
+		}else if(num==4){
+			if(crumpled==4){
+				$("#journey5").attr('href','#map9');
+			}else{
+				$("#crumpled").css('display','none');
+				$("#crumpled2").css('display','none');
+				$("#crumpled3").css('display','none');
+
+				
+				$(".journey1").css('display','none');
+				$(".journey2").css('display','none');
+				$(".journey3").css('display','none');
+				$(".journey4").slideToggle("slow");
+				$("#crumpled4").css('display','block');		
+				
+				crumpled=4;		
+			}
+		}
+	}
+	
+</script>
+
+<!--hover over scripts-->
+<script>
+	
+	var actionhover="";
+	
+	function isHovering(blurb){
+	if($("#map1").width()>1000){
+		actionhover=blurb;
+	}
+	}
+	
+	//show the hover over blurbs
+	function show(blurb, num){
+	if($("#map1").width()>1000){
+		var exp = document.getElementById(blurb);
+		
+		exp.style.display="block";
+		isHovering(num);
+	}
+	}
+	
+	function hide(blurb, num){	
+	if($("#map1").width()>1000){	
+		setTimeout(function(){
+		
+			var exp = document.getElementById(blurb);
+
+			if(actionhover!=num){
+				exp.style.display="none";
+			}
+		
+		}, 300);
+	}
+	}
+	
+</script>
+
+<script>
+
+	function preregister(){
+		$("#preregister").slideToggle();
+	}
+</script>
+
