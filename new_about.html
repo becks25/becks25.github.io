@@ -79,13 +79,6 @@
 		border-radius:5px;
 		width:30%;
 		font-size:1.3em;
-		background-color: rgb(38, 38, 38);
-   		 /* RGBa with 0.6 opacity */
-    	background-color: rgba(38, 38, 38, 0.7);
-    	/* For IE 5.5 - 7*/
-    	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-    	/* For IE 8*/
-    	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 	}
 	
 	.nav_option:hover{
@@ -93,7 +86,6 @@
 	}
 	
 	#what_{
-		background-color:#3B3834;
 		display:block;
 		clear:both;
 		position:relative;
@@ -128,6 +120,9 @@
 		width:50%;
 		padding:1%;
 		position:relative;
+	}
+	
+	#manifesto_text, #contact_info, .nav_option{
 		color:white;
 		background-color: rgb(38, 38, 38);
    		 /* RGBa with 0.6 opacity */
@@ -136,6 +131,13 @@
     	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
     	/* For IE 8*/
     	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	}
+	
+	#contact_info{
+		padding:1%;
+		right:0%;
+		left:60%;
+		position:relative;
 	}
 	
 	#grid, #bio{
@@ -171,6 +173,25 @@
 		text-align:left;
 		color:#be0606;
 	}
+	
+	#theteam{
+		display:block;
+		clear:both;
+		position:relative;
+		margin:0;
+		width:100%;		
+	}
+	#contact_us{
+		background:url('http://upload.wikimedia.org/wikipedia/commons/6/6f/Asseta_Lompo_with_her_goats.jpg');
+		background-attachment: fixed;
+		background-size:100%;
+		width:100%;
+		clear:both;
+	}
+	
+	.title_text{
+		font-size:1.3em;
+	}
 </style>
 
 <body onload="show(hugh_evans)">
@@ -186,7 +207,7 @@
 
 	<div id="what_">
 			<div id="left_blurb">
-				<p style="font-size:1.3em">What is Global Citizen?</p>
+				<p class="title_text">What is Global Citizen?</p>
 				<p>
 			
 					Global Citizen is a tool to amplify and unite a generation's call for justice. It's a place for you to learn and act, to bring an end to extreme poverty.
@@ -202,7 +223,7 @@
 			</div>
 			
 			<div id="right_blurb">
-				<p style="font-size:1.3em;">What is a Global Citizen?</p>
+				<p class="title_text">What is a Global Citizen?</p>
 				
 				<p>
 		
@@ -219,7 +240,7 @@
 	
 	<div id="manifesto">
 		<div id="manifesto_text">
-			<p style="font-size:1.3em;">The Global Citizen Manifesto</p>
+			<p class="title_text">The Global Citizen Manifesto</p>
 			
 			<p>
 				I believe that 1 billion people continuing to live in extreme poverty is an affront to our common humanity and dignity.<br />
@@ -236,7 +257,7 @@
 	</div>
 	
 	<div id="theteam">
-			<p style="font-size:1.3em;">Meet the Team</p>
+			<p class="title_text">Meet the Team</p>
 
 		<div id="grid">
 			<img onclick="show(hugh_evans)" class="bio_image" src="http://i.imgur.com/xhbKtgV.jpg?1"/>
@@ -293,6 +314,26 @@
 					<td><div class="bio_info"></div></td>
 			</table>
 			</p>
+		</div>
+	</div>
+	
+	<div id="contact_us">
+		<div id="contact_info">
+			<div class="title_text">General Inquiries</div> 
+				<p>contact@globalcitizen.org</p>
+			<br />
+			<div class="title_text">Press Inquiries</div>
+				<p>Jane Atkinson<br />
+				media@globalcitizen.org</p>
+			<br />
+			<div class="title_text">Business Development and Partner Inquiries</div>
+				<p>Elizabeth Edelman<br />
+				partners@globalcitizen.org</p>
+			<br/>
+			<div class="title_text">Address</div>
+				<p>Global Poverty Project<br />
+				594 Broadway, Suite 207<br />
+				New York, NY 10012</p>
 		</div>
 	</div>
 <br /><br/ >
