@@ -2,21 +2,47 @@
 </script>
 
 <script>
+
+/*info for everyone.  variable name should be the full name of the person with the following information (in order):
+	var fname_lname=[
+		"image_url",
+		"Fname Lname",
+		"Title",
+		"Hometown",
+		"Favorite word",
+		"Spirit Animal",
+		"Why GPP"
+	];
+
+*/
 	var hugh_evans=[
+		"http://i.imgur.com/xhbKtgV.jpg?1",
 		"Hugh Evans", 
 		"Chief Executive Officer",
 		"Melbourne, Australia", 
 		"Vision", 
 		"Eagle", 
-		"Because the end of extreme poverty is our generations greatest challenge."];
+		"Because the end of extreme poverty is our generations greatest challenge."
+		];
 	
 	var wei_soo=[
+		"http://i.imgur.com/GNmvtdI.jpg?1",
 		"Wei Soo",
 		"Managing Director-Operations",
 		"Kuala Lumpur, Malaysia",
 		"Vexing",
 		"Water Dog",
 		" My occupation is a &quothuman being&quot -everything else is incidental."
+	];
+	
+	var justine_lucas=[
+		"http://i.imgur.com/D0SJeDX.jpg?2",
+		"Justine Lucas",
+		"US Country Director",
+		"Chicago, IL",
+		"Shenanigans",
+		"Penguin",
+		"Together we are building a movement to see a world without extreme poverty. That is our future. And that, is beautiful."
 	];
 	
 	
@@ -26,6 +52,8 @@
 		for(i=0;i<questions.length;i++){
 			questions[i].innerHTML=person[i];
 		}
+		
+		$(questions[0]).attr("src",person[0]);
 	}
 </script>
 
@@ -213,7 +241,7 @@
 		<div id="grid">
 			<img onclick="show(hugh_evans)" class="bio_image" src="http://i.imgur.com/xhbKtgV.jpg?1"/>
 			<img onclick="show(wei_soo)" class="bio_image" src="http://i.imgur.com/GNmvtdI.jpg?1"/>
-			<img class="bio_image" src="http://i.imgur.com/D0SJeDX.jpg?2"/>
+			<img onclick="show(justine_lucas)" class="bio_image" src="http://i.imgur.com/D0SJeDX.jpg?2"/>
 			<img class="bio_image" src="http://i.imgur.com/wquwwMJ.jpg?1"/>
 			<img class="bio_image" src="http://i.imgur.com/GAS5Mxu.jpg?3"/>
 			<img class="bio_image" src="http://i.imgur.com/fyt3in3.jpg?1"/>
@@ -237,7 +265,7 @@
 		</div>
 		
 		<div id="bio">
-			<img src="http://i.imgur.com/DBcolK8.png" style="width:60%; text-align:center; margin:auto;"/>
+			<img class="bio_info" src="" style="width:65%; text-align:center; margin:auto;"/>
 			<p style="text-align:left;">
 			<table>
 				<tr>
