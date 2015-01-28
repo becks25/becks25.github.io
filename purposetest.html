@@ -1,109 +1,64 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Example campaign site</title>
-    <!-- Include basic stylesheet. ActionBlocks will work good but custom branding
-    needs the customer to add custom CSS -->
-    <link href="http://action-blocks.purpose.com/v0.18.0/purpose.min.css" rel="stylesheet">
-    <script src="http://action-blocks.purpose.com/v0.18.0/purpose.min.js" type="text/javascript"></script>
-    <script>new Purpose({ apiKey: "my-api-key", url: "//api.purpose.com/en" }).attach();</script>
-  </head>
-  <body data-prps-movement="my-movement" data-prps-id="my-action-page">
-    <h1>Site header<h1>
-    <p>Any custom content describing the campaign can be added here.</p>
+<script src="/js/purpose.min.js"></script>
+<script>new Purpose({ apiKey: "my-api-key", url: "//api.purpose.com/en" }).attach();</script>
+<link rel="stylesheet" href="/js/purpose.min.css">
 
-    <!-- ActionBlock: Activity feed -->
-    <ol id="my-feed" data-prps-action-block="feed" data-prps-feed-name="petition">
-      <li data-prps-feed-template>
-        <!-- the data-prps-feed-template tag will be used as a template for incoming events.-->
-        {firstName} from {country} have signed the {title}-petition {timestamp}, the year {%Y}, a {%A}.
-      </li>
-    </ol>
-
-    <!-- ActionBlock: Read more -->
-    <div>
-      <div>
-        <h1>This is our movement. It is great!</h1>
-        <p>
-          We are great because of something that takes a long
-          text to explain. So please
-          <a data-prps-action-block="read-more" data-prps-for="great-movement">read more</a>!
-        </p>
-      </div>
-
-      <div id="great-movement" class="prps-read-more prps-read-more--modal prps-hidden">
-        <div class="prps-read-more__content">
-          This is additional content for the read-more ActionBlock. There is also this from the server {content}.
-          <a href="#" class="prps-read-more__less" data-prps-action-block="read-more" data-prps-for="great-movement">
-            Read less
-          </a>
+<div class="prps prps--petition">
+  <ol class="prps-steplist" data-prps-action-block="wizard" data-prps-movement="speak-up" data-prps-id="my-action-page">
+    <li>
+      <form>
+        <div class="prps-top">
+          <p>{title}</p>
         </div>
-
-        <!-- modal background mask, only visible if the target element has the class 'prps-read-more--modal' -->
-        <div class="prps-read-more--modal__overlay"></div>
-      </div>
-    </div>
-
-    <!-- ActionBlock: Wizard -->
-    <!-- data-prps-movement should be set to the id or slug name of the movmement containing the Action -->
-    <ol id="wizard-1" data-prps-action-block="wizard">
-      <!-- Step 1 -->
-      <!-- both data-prps-movement and data-prps-id can be overridden for each step -->
-      <li data-prps-movement="friend-movement" class="prps-current-step">
-        <h1>Sign the petition!</h1>
-        <form>
-          <!-- You can define custom validation rules by adding `required` to a
-          field. Presence, number, email, and email format validations are supported. -->
-          <input type="email" name="email" required>
-          <input type="submit" value="Take action!">
-        </form>
-      </li>
-
-      <!-- Step 2 -->
-      <li>
-        <h1>We'd like to know more about you…</h1>
-
-        <!-- If the end-user submits the form with invalid data the form
-        gets marked as invalid, exposing customer-defined error messages
-        where needed. If the submit is a success the end-user gets proceeded
-        the next Step. -->
-        <form class="prps-invalid">
-          <!-- defineing an input field with the same name as a previous input
-          field will populate the value from the last entered value. This way
-          state can be re-submitted on subsequent form Steps. -->
-          <input type="text" name="email" readonly>
-
-          <!-- The name attribute of the field need to match the attribute name
-          accepted by the server, the 'member_info' scope is applied automatically.
-          (See documentation below for full list) -->
-          <label for="first_name">First name</label>
-          <input type="text" name="first_name" id="first-name">
-
-          <label class="prps-invalid">
-            Last name
-            <input type="text" name="last_name">
-
-            <!-- Only shown if form has class error: -->
-            <span class="prps-invalid-message">Last name is required.</span>
-          </label>
-
-          <!-- The text content of this button will be fetched from the Action's
-          buttonText defined in the CMS. -->
-          <button>{buttonText}</button>
-
-          <!-- Setting an image tag's src to a placeholder will work but is not
-          recommended. The page will do a request to the actual literal placeholder
-          before it is replaced to its real value. To work around this use
-          data-prps-src. -->
+        <div class="prps-media">
           <img data-prps-src="{imageUrl}" alt="{title}">
-        </form>
-      </li>
-
-      <!-- Step 3 -->
-      <!-- A step can be just simple HTML-->
-      <li>
-        <h1>Thank you</h1>
-      </li>
-    <ol>
-  </body>
-</html>
+        </div>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" class="prps-input" required>
+          <p class="prps-invalid-message">
+            is required.
+          </p>
+        </label>
+        <label>
+          <span>First name</span>
+          <input type="text" name="first_name" class="prps-input" required>
+          <p class="prps-invalid-message">
+            is required.
+          </p>
+        </label>
+        <label>
+          <span>Last name</span>
+          <input type="text" name="last_name" class="prps-input" required>
+          <p class="prps-invalid-message">
+            is required.
+          </p>
+        </label>
+        <label>
+          <span>Zip</span>
+          <input type="text" name="postcode" class="prps-input" placeholder="555 55" required pattern="\d{3}[ -]?\d{2}">
+          <p class="prps-invalid-message">
+            must be five digits long.
+          </p>
+        </label>
+        <small>By entering your email you are agreeing to receive emails from Global Citizen about life saving actions.</small>
+        <div class="prps-bottom">
+          <button class="prps-btn prps-btn--block">
+            Submit
+          </button>
+          <p class="prps-failed-message">
+            Server error. Please try again.
+          </p>
+        </div>
+      </form>
+    </li>
+    <li>
+      <h1 class="prps-widget-title">
+        Thank you!
+      </h1>
+      <p>
+        Rest assured, you signing up to our cause will help a long way to improve the world.
+      </p>
+    </li>
+  </ol>
+  <noscript><div>Please turn on JavaScript in your browser.</div></noscript>
+</div>
