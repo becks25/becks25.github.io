@@ -109,6 +109,7 @@ input[type="text"].prps-input, input[type="password"].prps-input, input[type="em
 
 .prps label {
   position: relative;
+  color:white;
   display: block; }
   .prps label > span {
     display: block;
