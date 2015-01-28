@@ -1,8 +1,5 @@
 /* Version: 0.18.0 (f0b4a755fdd05226c78a424b05e91349e59f8248) */
-.prps, .prps * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0; }
+
 
 .prps {
   display: block;
