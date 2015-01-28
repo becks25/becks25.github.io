@@ -3,7 +3,7 @@
 
 .prps {
   display: block;
-  background: white;
+  background: none;
   min-width: 300px;
   max-width: 400px;
   margin: 0;
@@ -113,6 +113,7 @@ input[type="text"].prps-input, input[type="password"].prps-input, input[type="em
   .prps label > span {
     display: block;
     margin-bottom: 3px;
+    color:white;
     font-size: 14px; }
   .prps label > input[type="text"].prps-input, .prps label > input[type="password"].prps-input, .prps label > input[type="email"].prps-input, .prps label > input[type="number"].prps-input, .prps label > input[type="tel"].prps-input {
     font-weight: normal;
