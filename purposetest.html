@@ -1,0 +1,64 @@
+<script src="/js/purpose.min.js"></script>
+<script>new Purpose({ apiKey: "my-api-key", url: "//api.purpose.com/en" }).attach();</script>
+<link rel="stylesheet" href="/js/purpose.min.css">
+
+<div class="prps prps--petition">
+  <ol class="prps-steplist" data-prps-action-block="wizard" data-prps-movement="speak-up" data-prps-id="my-action-page">
+    <li>
+      <form>
+        <div class="prps-top">
+          <p>{title}</p>
+        </div>
+        <div class="prps-media">
+          <img data-prps-src="{imageUrl}" alt="{title}">
+        </div>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" class="prps-input" required>
+          <p class="prps-invalid-message">
+            is required.
+          </p>
+        </label>
+        <label>
+          <span>First name</span>
+          <input type="text" name="first_name" class="prps-input" required>
+          <p class="prps-invalid-message">
+            is required.
+          </p>
+        </label>
+        <label>
+          <span>Last name</span>
+          <input type="text" name="last_name" class="prps-input" required>
+          <p class="prps-invalid-message">
+            is required.
+          </p>
+        </label>
+        <label>
+          <span>Zip</span>
+          <input type="text" name="postcode" class="prps-input" placeholder="555 55" required pattern="\d{3}[ -]?\d{2}">
+          <p class="prps-invalid-message">
+            must be five digits long.
+          </p>
+        </label>
+        <small>By entering your email you are agreeing to receive emails from Oxfam about life saving actions.</small>
+        <div class="prps-bottom">
+          <button class="prps-btn prps-btn--block">
+            Submit
+          </button>
+          <p class="prps-failed-message">
+            Server error. Please try again.
+          </p>
+        </div>
+      </form>
+    </li>
+    <li>
+      <h1 class="prps-widget-title">
+        Thank you!
+      </h1>
+      <p>
+        Rest assured, you signing up to our cause will help a long way to improve the world.
+      </p>
+    </li>
+  </ol>
+  <noscript><div>Please turn on JavaScript in your browser.</div></noscript>
+</div>
