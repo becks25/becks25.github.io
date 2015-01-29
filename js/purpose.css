@@ -30,27 +30,7 @@
   margin-bottom: 20px;
   font-size: 12px; }
 
-.prps-media {
-  margin: -20px -20px 20px;
-  border-radius: 7px 7px 0 0; }
-  .prps-media > img {
-    display: block;
-    border-radius: 7px 7px 0 0; }
 
-.prps-bottom {
-  padding: 10px;
-  }
-  .prps-bottom input[type="text"].prps-input, .prps-bottom input[type="password"].prps-input, .prps-bottom input[type="email"].prps-input, .prps-bottom input[type="number"].prps-input, .prps-bottom input[type="tel"].prps-input {
-    margin-bottom: 0; }
-  .prps-bottom:last-child {
-    margin: 0 -20px -20px;
-    border-radius: 0 0 7px 7px;
-    border-bottom: 0; }
-
-	p {
-    margin-bottom: 0;
-    text-align: center;
-    font-size: 16px; }
 
 .prps-hidden, .prps-ie8-only {
   display: none !important; }
