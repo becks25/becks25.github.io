@@ -137,8 +137,7 @@ p.prps-failed-message {
   line-height: 20px;
   text-decoration: none; }
   .prps-btn:hover, .prps-btn:focus, .prps button:hover, .prps button:focus, .prps input[type="submit"]:hover, .prps input[type="submit"]:focus {
-    background: #666;
-    border: 2px solid #666;
+    background: #ff0000;
     cursor: pointer;
     text-decoration: none;
     color: white; }
@@ -149,7 +148,6 @@ p.prps-failed-message {
 
 button.prps-btn--block {
   width: 100%; }
-
 
 
 [class^="prps-icon-"], [class*=" prps-icon-"] {
