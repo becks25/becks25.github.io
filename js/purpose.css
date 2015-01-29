@@ -312,31 +312,7 @@ button.prps-btn--block {
   line-height: 50px;
   text-align: center; }
 
-.prps-share {
-  margin: -20px -20px 20px;
-  padding: 0;
-  list-style: none; }
-  .prps-share a, .prps-share a:hover, .prps-share a:focus {
-    text-decoration: none; }
-  .prps-share > li {
-    display: block;
-    margin: 0; }
-    .prps-share > li > a {
-      display: block;
-      padding: 20px; }
-  .prps-share [class*="prps-icon-"] {
-    position: relative;
-    top: -3px;
-    display: inline-block;
-    width: 55px;
-    font-size: 32px;
-    vertical-align: middle; }
 
-.prps-pull-left {
-  float: left; }
-
-.prps-pull-right {
-  float: right; }
 
 .prps-input-group:after, .prps-progress:after {
   content: "";
