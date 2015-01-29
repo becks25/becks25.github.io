@@ -31,7 +31,6 @@
   font-size: 12px; }
 
 
-
 .prps-hidden, .prps-ie8-only {
   display: none !important; }
 
@@ -66,14 +65,7 @@ input[type="text"].prps-input, input[type="password"].prps-input, input[type="em
   position: relative;
   color:white;
   display: block; }
-  .prps label > span {
-    display: block;
-    margin-bottom: 3px;
-    color:white;
-    font-size: 14px; }
-  .prps label > input[type="text"].prps-input, .prps label > input[type="password"].prps-input, .prps label > input[type="email"].prps-input, .prps label > input[type="number"].prps-input, .prps label > input[type="tel"].prps-input {
-    font-weight: normal;
-    font-style: normal; }
+  
 
 .prps-input-group > [class*="prps-input-group__"] {
   float: left; }
