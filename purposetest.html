@@ -1,19 +1,96 @@
-<script src="/js/purpose.min.js"></script>
-<script>new Purpose({ apiKey: "global-citizen-19231b266c396d41dd901d62fcf8f095", url: "//api.staging.purpose.com/en" }).attach();</script>
-<!-- <script src="http://action-blocks.purpose.com/v0.18.0/purpose.min.js"></script> -->
-<link rel="stylesheet" href="/js/purpose.css">
+<!--<script src="/js/purpose.min.js"></script>-->
+<script src="http://action-blocks.purpose.com/v0.18.0/purpose.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>new Purpose({ apiKey: "globalcitizen-3f3cf72f7154eecff22152fd317f06c5", url: "//api.movements.purpose.com/en" }).attach();
+
+
+
+</script>
+
+<script>
+	function add_id(){
+		var country = document.getElementsByName('country');
+		country.selected="us";
+	}
+</script>
+
+    <link href="http://action-blocks.purpose.com/v0.18.0/purpose.min.css" rel="stylesheet">
 
 <style>
-	body{
-		background-image:url("http://dqk9frulcisr8.cloudfront.net/gppwebstatic/v7/App_Themes/homepage/css/images/signup-landing2.jpg");
-		
+
+	#adjust_country{
+		width:106%;
+		background-color:white;
+    	font-size:1em;
+    	border-radius:0;
+	}
+	
+	#everything{
+		background-image:url("http://www.globalpovertyproject.com/wp-content/uploads/2015/02/9140556495_0554ab02f0_k.jpg");	
+
+		background-size:cover;
+ 		background-repeat:no-repeat;
+ 		color:white;
+ 		position:absolute;
+ 		top:0px;
+ 		bottom:0px;
+
+	}
+
+	
+	.prps-widget-title, .prps-top{
+		display:none;
+	}
+	.prps-btn{
+		background-color: #be0606;
 		color:white;
+		border:none;
+		margin: 0 10px 10px;
+		padding: 8px 12px;
+		width:101%;		
+	}
+	
+	.prps-bottom{
+		border:none;
+	}
+	
+	input.prps-input{
+		opacity:0.5;
+		padding:1%;
+	}
+	.prps-btn:hover{
+		background-color: #be0606;
+		border:none;
+		opacity:0.7;
+	}
+	
+	.prps-bottom{
+		background-color:none;
+		background:none;
 	}
 	
 	#left{
 		float:left;
 		width:40%;
 		padding:2%;
+	
+	}
+	
+	#title_text, #right, .prps-share{
+	background-color:black;
+		    background: rgb(0, 0, 0) transparent;
+    /* RGBa with 0.6 opacity */
+    background: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    color:white;
+	}
+	
+	a{
+		color:white;
 	}
 	
 	#right{
@@ -21,22 +98,29 @@
 		width:40%;
 		padding:2%;
 		margin-top:5%;
+		margin-right:2%;
 		text-align:left;
+
 	}
 	
+
 	@media screen and (max-width: 710px) {
 		#left, #right{
 			clear:both;
 			float:none;
 			display:block;
 			width:90%;
+			margin:auto;
 		}
 		
-		body{
+		#everything{
 			background-size:cover;
  			background-repeat:no-repeat;
  			background-position: 0px 0px;
  		 	width:100%;
+			overflow: scroll;
+ 		 	height:700px;
+
 		}
 		
 		
@@ -44,330 +128,27 @@
 	}
 	
 </style>
-<body>
+<body onload="add_id()">
+<div id="everything">
 
-<div id="left">
-<p>
-	<h1>Where will you be in 2015?</h1>
-</p>
+	<div style="text-align:center;" id="title_text">
+		<h1 style="font-size:2.5em;">Sign the petition to stand for a world without polio</h1>
+	</div>
 
-<div data-prps-movement="global-citizen" data-prps-generator="action-sequence" data-prps-action-sequence="newsletter-launch-sign"></div>
+	<div id="left">
+		<div data-prps-movement="global-citizen" data-prps-generator="action-sequence" data-prps-action-sequence="polio-petition"></div>
 
-<!-- 
-<div class="prps prps~~petition">
-  <ol class="prps-steplist" data-prps-action-block="wizard" data-prps-movement="global-citizen" data-prps-id="newsletter-launch-sign">
-    <li>
-      <form>
-        
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" class="prps-input" required>
-          <p class="prps-invalid-message">
-            is required.
-          </p>
-        </label>
-        <label>
-          <span>First name</span>
-          <input type="text" name="first_name" class="prps-input" required>
-          <p class="prps-invalid-message">
-            is required.
-          </p>
-        </label>
-        <label>
-          <span>Last name</span>
-          <input type="text" name="last_name" class="prps-input" required>
-          <p class="prps-invalid-message">
-            is required.
-          </p>
-        </label>
-        <label>
-        	<span>Country</span>
-        	<select name="country" class="prps-input" required>
-				<option value="17">Australia</option>
-				<option value="40">Canada</option>
-				<option value="168">New Zealand</option>
-				<option value="76">United Kingdom</option>
-				<option selected="selected" value="223">United States</option>
-				<option value="5">Afghanistan</option>
-				<option value="19">Aland Islands</option>
-				<option value="8">Albania</option>
-				<option value="61">Algeria</option>
-				<option value="15">American Samoa</option>
-				<option value="3">Andorra</option>
-				<option value="11">Angola</option>
-				<option value="7">Anguilla</option>
-				<option value="13">Antarctica</option>
-				<option value="6">Antigua and Barbuda</option>
-				<option value="14">Argentina</option>
-				<option value="9">Armenia</option>
-				<option value="18">Aruba</option>
-				<option value="16">Austria</option>
-				<option value="20">Azerbaijan</option>
-				<option value="34">Bahamas</option>
-				<option value="27">Bahrain</option>
-				<option value="23">Bangladesh</option>
-				<option value="22">Barbados</option>
-				<option value="38">Belarus</option>
-				<option value="24">Belgium</option>
-				<option value="39">Belize</option>
-				<option value="29">Benin</option>
-				<option value="30">Bermuda</option>
-				<option value="35">Bhutan</option>
-				<option value="32">Bolivia</option>
-				<option value="21">Bosnia and Herzegovina</option>
-				<option value="37">Botswana</option>
-				<option value="36">Bouvet Island</option>
-				<option value="33">Brazil</option>
-				<option value="104">British Indian Ocean Territory</option>
-				<option value="31">Brunei Darussalam</option>
-				<option value="26">Bulgaria</option>
-				<option value="25">Burkina Faso</option>
-				<option value="28">Burundi</option>
-				<option value="115">Cambodia</option>
-				<option value="48">Cameroon</option>
-				<option value="53">Cape Verde</option>
-				<option value="122">Cayman Islands</option>
-				<option value="42">Central African Republic</option>
-				<option value="207">Chad</option>
-				<option value="47">Chile</option>
-				<option value="49">China</option>
-				<option value="50">Colombia</option>
-				<option value="117">Comoros</option>
-				<option value="43">Congo</option>
-				<option value="41">Congo, The Democratic Republic of the</option>
-				<option value="46">Cook Islands</option>
-				<option value="51">Costa Rica</option>
-				<option value="45">Cote D'Ivoire</option>
-				<option value="96">Croatia</option>
-				<option value="52">Cuba</option>
-				<option value="54">Cyprus</option>
-				<option value="55">Czech Republic</option>
-				<option value="58">Denmark</option>
-				<option value="57">Djibouti</option>
-				<option value="59">Dominica</option>
-				<option value="60">Dominican Republic</option>
-				<option value="62">Ecuador</option>
-				<option value="64">Egypt</option>
-				<option value="203">El Salvador</option>
-				<option value="87">Equatorial Guinea</option>
-				<option value="65">Eritrea</option>
-				<option value="63">Estonia</option>
-				<option value="67">Ethiopia</option>
-				<option value="71">Falkland Islands (Malvinas)</option>
-				<option value="73">Faroe Islands</option>
-				<option value="70">Fiji</option>
-				<option value="69">Finland</option>
-				<option value="74">France</option>
-				<option value="79">French Guiana</option>
-				<option value="172">French Polynesia</option>
-				<option value="75">Gabon</option>
-				<option value="84">Gambia</option>
-				<option value="78">Georgia</option>
-				<option value="56">Germany</option>
-				<option value="81">Ghana</option>
-				<option value="82">Gibraltar</option>
-				<option value="88">Greece</option>
-				<option value="83">Greenland</option>
-				<option value="77">Grenada</option>
-				<option value="86">Guadeloupe</option>
-				<option value="90">Guam</option>
-				<option value="89">Guatemala</option>
-				<option value="80">Guernsey</option>
-				<option value="85">Guinea</option>
-				<option value="91">Guinea-Bissau</option>
-				<option value="92">Guyana</option>
-				<option value="97">Haiti</option>
-				<option value="94">Heard Island and McDonald Islands</option>
-				<option value="226">Holy See (Vatican City State)</option>
-				<option value="95">Honduras</option>
-				<option value="93">Hong Kong</option>
-				<option value="98">Hungary</option>
-				<option value="107">Iceland</option>
-				<option value="103">India</option>
-				<option value="99">Indonesia</option>
-				<option value="106">Iran, Islamic Republic of</option>
-				<option value="105">Iraq</option>
-				<option value="100">Ireland</option>
-				<option value="102">Isle of Man</option>
-				<option value="101">Israel</option>
-				<option value="108">Italy</option>
-				<option value="110">Jamaica</option>
-				<option value="112">Japan</option>
-				<option value="109">Jersey</option>
-				<option value="111">Jordan</option>
-				<option value="123">Kazakstan</option>
-				<option value="113">Kenya</option>
-				<option value="116">Kiribati</option>
-				<option value="119">Korea, Democratic People's Republic of</option>
-				<option value="120">Korea, Republic of</option>
-				<option value="121">Kuwait</option>
-				<option value="114">Kyrgyzstan</option>
-				<option value="124">Lao People's Democratic Republic</option>
-				<option value="133">Latvia</option>
-				<option value="125">Lebanon</option>
-				<option value="130">Lesotho</option>
-				<option value="129">Liberia</option>
-				<option value="134">Libyan Arab Jamahiriya</option>
-				<option value="127">Liechtenstein</option>
-				<option value="131">Lithuania</option>
-				<option value="132">Luxembourg</option>
-				<option value="145">Macau</option>
-				<option value="141">Macedonia</option>
-				<option value="139">Madagascar</option>
-				<option value="153">Malawi</option>
-				<option value="155">Malaysia</option>
-				<option value="152">Maldives</option>
-				<option value="142">Mali</option>
-				<option value="150">Malta</option>
-				<option value="140">Marshall Islands</option>
-				<option value="147">Martinique</option>
-				<option value="148">Mauritania</option>
-				<option value="151">Mauritius</option>
-				<option value="236">Mayotte</option>
-				<option value="154">Mexico</option>
-				<option value="72">Micronesia, Federated States of</option>
-				<option value="137">Moldova, Republic of</option>
-				<option value="136">Monaco</option>
-				<option value="144">Mongolia</option>
-				<option value="138">Montenegro</option>
-				<option value="149">Montserrat</option>
-				<option value="135">Morocco</option>
-				<option value="156">Mozambique</option>
-				<option value="143">Myanmar</option>
-				<option value="157">Namibia</option>
-				<option value="166">Nauru</option>
-				<option value="165">Nepal</option>
-				<option value="163">Netherlands</option>
-				<option value="10">Netherlands Antilles</option>
-				<option value="158">New Caledonia</option>
-				<option value="162">Nicaragua</option>
-				<option value="159">Niger</option>
-				<option value="161">Nigeria</option>
-				<option value="167">Niue</option>
-				<option value="160">Norfolk Island</option>
-				<option value="146">Northern Mariana Islands</option>
-				<option value="164">Norway</option>
-				<option value="169">Oman</option>
-				<option value="175">Pakistan</option>
-				<option value="181">Palau</option>
-				<option value="179">Palestinian Territory, Occupied</option>
-				<option value="170">Panama</option>
-				<option value="173">Papua New Guinea</option>
-				<option value="182">Paraguay</option>
-				<option value="171">Peru</option>
-				<option value="174">Philippines</option>
-				<option value="176">Poland</option>
-				<option value="180">Portugal</option>
-				<option value="178">Puerto Rico</option>
-				<option value="183">Qatar</option>
-				<option value="184">Reunion</option>
-				<option value="185">Romania</option>
-				<option value="187">Russian Federation</option>
-				<option value="188">Rwanda</option>
-				<option value="118">Saint Kitts and Nevis</option>
-				<option value="126">Saint Lucia</option>
-				<option value="177">Saint Pierre and Miquelon</option>
-				<option value="227">Saint Vincent and the Grenadines</option>
-				<option value="234">Samoa</option>
-				<option value="198">San Marino</option>
-				<option value="202">Sao Tome and Principe</option>
-				<option value="189">Saudi Arabia</option>
-				<option value="199">Senegal</option>
-				<option value="186">Serbia</option>
-				<option value="191">Seychelles</option>
-				<option value="197">Sierra Leone</option>
-				<option value="194">Singapore</option>
-				<option value="196">Slovakia</option>
-				<option value="195">Slovenia</option>
-				<option value="190">Solomon Islands</option>
-				<option value="200">Somalia</option>
-				<option value="237">South Africa</option>
-				<option value="66">Spain</option>
-				<option value="128">Sri Lanka</option>
-				<option value="192">Sudan</option>
-				<option value="201">Suriname</option>
-				<option value="205">Swaziland</option>
-				<option value="193">Sweden</option>
-				<option value="44">Switzerland</option>
-				<option value="204">Syrian Arab Republic</option>
-				<option value="218">Taiwan</option>
-				<option value="210">Tajikistan</option>
-				<option value="219">Tanzania, United Republic of</option>
-				<option value="209">Thailand</option>
-				<option value="208">Togo</option>
-				<option value="211">Tokelau</option>
-				<option value="214">Tonga</option>
-				<option value="216">Trinidad and Tobago</option>
-				<option value="213">Tunisia</option>
-				<option value="215">Turkey</option>
-				<option value="212">Turkmenistan</option>
-				<option value="206">Turks and Caicos Islands</option>
-				<option value="217">Tuvalu</option>
-				<option value="221">Uganda</option>
-				<option value="220">Ukraine</option>
-				<option value="4">United Arab Emirates</option>
-				<option value="222">United States Minor Outlying Islands</option>
-				<option value="224">Uruguay</option>
-				<option value="225">Uzbekistan</option>
-				<option value="232">Vanuatu</option>
-				<option value="228">Venezuela</option>
-				<option value="231">Vietnam</option>
-				<option value="229">Virgin Islands, British</option>
-				<option value="230">Virgin Islands, U.S.</option>
-				<option value="233">Wallis and Futuna</option>
-				<option value="235">Yemen</option>
-				<option value="238">Zambia</option>
-				<option value="239">Zimbabwe</option>
-			</select>
-        	<p class="prps-invalid-message">
-        		is required.
-        	</p>
-        </label>
-        <label>
-          <span>Zip</span>
-          <input type="text" name="postcode" class="prps-input" placeholder="555 55" required pattern="\d{3}[ -]?\d{2}">
-          <p class="prps-invalid-message">
-            must be five digits long.
-          </p>
-        </label>
-        
-        <div class="prps-bottom">
-          <button class="prps-btn prps-btn~~block">
-            Be counted!
-          </button>
-          <p class="prps-failed-message">
-            Server error. Please try again.
-          </p>
-        </div>
-      </form>
-    </li>
-    <li>
-      <h1 class="prps-widget-title">
-        Thank you!
-      </h1>
-      <p>
-        Rest assured, you signing up to our cause will help a long way to improve the world.
-      </p>
-    </li>
-  </ol>
-  <noscript><div>Please turn on JavaScript in your browser.</div></noscript>
-</div>
- -->
+	</div>
 
-</div>
-
-<div id="right">
+	<div id="right">
+		<p>
+	Right now, we have a unique opportunity to use the power of vaccines to wipe out Polio for good. Eliminating Polio would be incredible achievement, and it would mean that no child would ever have to suffer from this debilitating disease again.  
+	<br /><br /><p>
 	<p>
-	<strong>This year, for the first time in history the end of extreme poverty is within our reach.</strong>
-	</p>
+	We're 99% of the way there, but the funding gap and unfulfilled pledges are threatening the progress that has already been made. We need to stand together for the final push: sign the petition to call on leaders to make good on their commitments and create a brighter tomorrow for all the world’s children.
+		<br /></p>
 	
-	<p>
-	World leaders are working together to set huge goals to make the world a better place. These development goals are a to-do list for the world for the next 15 years. This roadmap could send humanity forward, or simply cement the status quo.
-	</p>
+	</div>
 
-	<p>
-	But a rally of public support from global citizens will force our leaders to think big. Together we can remind them there are no excuses to sit back and watch the cycle of extreme poverty continue.
-	</p>
 </div>
-
-</body>
+</div>
