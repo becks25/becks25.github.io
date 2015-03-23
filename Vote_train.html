@@ -1,4 +1,10 @@
+<!--
 
+
+<iframe width="80%" height="100" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=INSERT_URL_HERE&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+
+
+-->
 
 <head>
 
@@ -6,7 +12,7 @@
 <style type="text/css">
 
 body{
-	background-image:url('train-bkgd.png');
+	background-image:url('http://www.globalpovertyproject.com/wp-content/uploads/2015/03/140422_PL_Train_0920.jpg');
 	background-position:fixed;
 	background-repeat:no-repeat;
 	-webkit-background-size: cover;
@@ -16,13 +22,14 @@ body{
 }
 
 #vote{
-	margin-left:45%;
-	margin-right:3%;
+	margin-left:3%;
+	margin-right:45%;
 	margin-top:5%;
 }
 
-.ss-choice-item, .ss-choice-item-control, .ss-choice-label{
-	vertical-align:middle;
+form{
+	margin-top:25%;
+	margin-left:1%;
 }
 
 .required-message{
@@ -35,8 +42,13 @@ body{
 
 }
 
+.ss-question-list, .ss-form-entry, .ss-choices{
+	padding:0%;
+	margin:0%;
+}
+
 .ss-choice-item{
-	padding:2%;
+	padding:1%;
 }
 
 #ss-submit{
@@ -88,99 +100,78 @@ body{
 </script>
 
 
-<script type="text/javascript">
-          /**
- * @license
- *! H5F
- * https://github.com/ryanseddon/H5F/
- * Copyright (c) Ryan Seddon | Licensed MIT
- */
-
-(function(e,t){"function"==typeof define&&define.amd?define(t):e.H5F=t()})(this,function(){var e,t,a,i,n,r,s,l,u,o,c,d,v,f,p,m,h,g,b,y,w,C,N,A,E,$,k=document,x=k.createElement("input"),q=/^[a-zA-Z0-9.!#$%&'*+-\/=?\^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,M=/[a-z][\-\.+a-z]*:\/\//i,L=/^(input|select|textarea)$/i;return r=function(e,t){var a=!e.nodeType||!1,i={validClass:"valid",invalidClass:"error",requiredClass:"required",placeholderClass:"placeholder"};if("object"==typeof t)for(var r in i)t[r]===void 0&&(t[r]=i[r]);if(n=t||i,a)for(var l=0,u=e.length;u>l;l++)s(e[l]);else s(e)},s=function(a){var i,n=a.elements,r=n.length,s=!!a.attributes.novalidate;if(b(a,"invalid",u,!0),b(a,"blur",u,!0),b(a,"input",u,!0),b(a,"keyup",u,!0),b(a,"focus",u,!0),b(a,"change",u,!0),b(a,"click",o,!0),b(a,"submit",function(i){e=!0,t||s||a.checkValidity()||w(i)},!1),!v())for(a.checkValidity=function(){return c(a)};r--;)i=!!n[r].attributes.required,"fieldset"!==n[r].nodeName.toLowerCase()&&l(n[r])},l=function(e){var t=e,a=g(t),n={type:t.getAttribute("type"),pattern:t.getAttribute("pattern"),placeholder:t.getAttribute("placeholder")},r=/^(email|url)$/i,s=/^(input|keyup)$/i,l=r.test(n.type)?n.type:n.pattern?n.pattern:!1,u=f(t,l),o=m(t,"step"),v=m(t,"min"),h=m(t,"max"),b=!(""===t.validationMessage||void 0===t.validationMessage);t.checkValidity=function(){return c.call(this,t)},t.setCustomValidity=function(e){d.call(t,e)},t.validity={valueMissing:a,patternMismatch:u,rangeUnderflow:v,rangeOverflow:h,stepMismatch:o,customError:b,valid:!(a||u||o||v||h||b)},n.placeholder&&!s.test(i)&&p(t)},u=function(e){var t=C(e)||e,a=/^(input|keyup|focusin|focus|change)$/i,r=/^(submit|image|button|reset)$/i,s=/^(checkbox|radio)$/i,o=!0;!L.test(t.nodeName)||r.test(t.type)||r.test(t.nodeName)||(i=e.type,v()||l(t),t.validity.valid&&(""!==t.value||s.test(t.type))||t.value!==t.getAttribute("placeholder")&&t.validity.valid?(A(t,[n.invalidClass,n.requiredClass]),N(t,n.validClass)):a.test(i)?t.validity.valueMissing&&A(t,[n.requiredClass,n.invalidClass,n.validClass]):t.validity.valueMissing?(A(t,[n.invalidClass,n.validClass]),N(t,n.requiredClass)):t.validity.valid||(A(t,[n.validClass,n.requiredClass]),N(t,n.invalidClass)),"input"===i&&o&&(y(t.form,"keyup",u,!0),o=!1))},c=function(t){var a,i,n,r,s=!1;if("form"===t.nodeName.toLowerCase()){a=t.elements;for(var l=0,o=a.length;o>l;l++)i=a[l],n=!!i.attributes.required,r=!!i.attributes.pattern,"fieldset"!==i.nodeName.toLowerCase()&&(n||r&&n)&&(u(i),i.validity.valid||s||(e&&i.focus(),s=!0));return!s}return u(t),t.validity.valid},d=function(e){var t=this;t.validationMessage=e},o=function(e){var a=C(e);a.attributes.formnovalidate&&"submit"===a.type&&(t=!0)},v=function(){return E(x,"validity")&&E(x,"checkValidity")},f=function(e,t){if("email"===t)return!q.test(e.value);if("url"===t)return!M.test(e.value);if(t){var i=e.getAttribute("placeholder"),n=e.value;return a=RegExp("^(?:"+t+")$"),n===i?!1:""===n?!1:!a.test(e.value)}return!1},p=function(e){var t={placeholder:e.getAttribute("placeholder")},a=/^(focus|focusin|submit)$/i,r=/^(input|textarea)$/i,s=/^password$/i,l=!!("placeholder"in x);l||!r.test(e.nodeName)||s.test(e.type)||(""!==e.value||a.test(i)?e.value===t.placeholder&&a.test(i)&&(e.value="",A(e,n.placeholderClass)):(e.value=t.placeholder,b(e.form,"submit",function(){i="submit",p(e)},!0),N(e,n.placeholderClass)))},m=function(e,t){var a=parseInt(e.getAttribute("min"),10)||0,i=parseInt(e.getAttribute("max"),10)||!1,n=parseInt(e.getAttribute("step"),10)||1,r=parseInt(e.value,10),s=(r-a)%n;return g(e)||isNaN(r)?"number"===e.getAttribute("type")?!0:!1:"step"===t?e.getAttribute("step")?0!==s:!1:"min"===t?e.getAttribute("min")?a>r:!1:"max"===t?e.getAttribute("max")?r>i:!1:void 0},h=function(e){var t=!!e.attributes.required;return t?g(e):!1},g=function(e){var t=e.getAttribute("placeholder"),a=/^(checkbox|radio)$/i,i=!!e.attributes.required;return!(!i||""!==e.value&&e.value!==t&&(!a.test(e.type)||$(e)))},b=function(e,t,a,i){E(window,"addEventListener")?e.addEventListener(t,a,i):E(window,"attachEvent")&&window.event!==void 0&&("blur"===t?t="focusout":"focus"===t&&(t="focusin"),e.attachEvent("on"+t,a))},y=function(e,t,a,i){E(window,"removeEventListener")?e.removeEventListener(t,a,i):E(window,"detachEvent")&&window.event!==void 0&&e.detachEvent("on"+t,a)},w=function(e){e=e||window.event,e.stopPropagation&&e.preventDefault?(e.stopPropagation(),e.preventDefault()):(e.cancelBubble=!0,e.returnValue=!1)},C=function(e){return e=e||window.event,e.target||e.srcElement},N=function(e,t){var a;e.className?(a=RegExp("(^|\\s)"+t+"(\\s|$)"),a.test(e.className)||(e.className+=" "+t)):e.className=t},A=function(e,t){var a,i,n="object"==typeof t?t.length:1,r=n;if(e.className)if(e.className===t)e.className="";else for(;n--;)a=RegExp("(^|\\s)"+(r>1?t[n]:t)+"(\\s|$)"),i=e.className.match(a),i&&3===i.length&&(e.className=e.className.replace(a,i[1]&&i[2]?" ":""))},E=function(e,t){var a=typeof e[t],i=RegExp("^function|object$","i");return!!(i.test(a)&&e[t]||"unknown"===a)},$=function(e){for(var t=document.getElementsByName(e.name),a=0;t.length>a;a++)if(t[a].checked)return!0;return!1},{setup:r}});
-
-        </script>
 
 <link rel="alternate" type="text/xml+oembed" href="https://docs.google.com/forms/d/1darwWSiwvUMDhRSUWFuC7PCnFSJqWMhxRdZgV3hKr_A/oembed?url=https://docs.google.com/forms/d/1darwWSiwvUMDhRSUWFuC7PCnFSJqWMhxRdZgV3hKr_A/viewform&amp;format=xml">
 
 </head>
-<body dir="ltr" class="ss-base-body">
-
-<div id="everything">
+<body>
 
 
 <div id="vote">
 
-<p style="padding:3%;">
-	Explanation blurb.  This is where we put in a little blurb about what's going on and why people should be voting!
-</p>
+	<p style="padding:3%;">
+		Explanation blurb.  This is where we put in a little blurb about what's going on and why people should be voting!
+	</p>
 
-<form action="https://docs.google.com/forms/d/1darwWSiwvUMDhRSUWFuC7PCnFSJqWMhxRdZgV3hKr_A/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
-<ol role="list" class="ss-question-list">
+	<form action="https://docs.google.com/forms/d/1darwWSiwvUMDhRSUWFuC7PCnFSJqWMhxRdZgV3hKr_A/formResponse" method="POST" id="ss-form" target="_self" onsubmit="">
+	<ol role="list" class="ss-question-list">
 
-<div class="ss-form-entry">
+	<div class="ss-form-entry">
 
 
-<ul class="ss-choices" role="radiogroup" aria-label="Choose your favorite song  ">
-	<li class="ss-choice-item"><label>
-		<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 1" id="group_1162506607_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
+	<ul class="ss-choices" role="radiogroup" aria-label="Choose your favorite song  ">
+		<li class="ss-choice-item"><label>
+			<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 1" id="group_1162506607_1" role="radio" class="ss-q-radio" aria-label="Option 1" required="" aria-required="true"></span>
 		
-		<span class="ss-choice-label"><iframe width="80%" height="100" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/153530465&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-		</span>
-	</label></li> 
+			<span class="ss-choice-label"><iframe width="80%" height="60" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/trainofficial/02-hey-soul-sister&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+			</span>
+		</label></li> 
 	
-	<li class="ss-choice-item"><label>
-		<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 2" id="group_1162506607_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
+		<li class="ss-choice-item"><label>
+			<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 2" id="group_1162506607_2" role="radio" class="ss-q-radio" aria-label="Option 2" required="" aria-required="true"></span>
 		
-	<span class="ss-choice-label">Drops of Jupiter<br /><iframe width="80%" height="24" src="https://www.youtube.com/embed/7Xf-Lesrkuc" frameborder="0" allowfullscreen></iframe></span>
+		<span class="ss-choice-label"><iframe width="80%" height="60" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/trainofficial/50-ways-to-say-goodbye&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></span>
 	
-	</label></li> 
+		</label></li> 
 
-	<li class="ss-choice-item"><label>
-		<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 3" id="group_1162506607_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
+		<li class="ss-choice-item"><label>
+			<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 3" id="group_1162506607_3" role="radio" class="ss-q-radio" aria-label="Option 3" required="" aria-required="true"></span>
 		
-		<span class="ss-choice-label">Option 3</span>
-	</label></li> 
+			<span class="ss-choice-label"><iframe width="80%" height="60" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/trainofficial/11-marry-me&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></span>
+		</label></li> 
 
-	<li class="ss-choice-item"><label>
-		<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 4" id="group_1162506607_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
+		<li class="ss-choice-item"><label>
+			<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 4" id="group_1162506607_4" role="radio" class="ss-q-radio" aria-label="Option 4" required="" aria-required="true"></span>
 		
-		<span class="ss-choice-label">Option 4</span>
-	</label></li> 
+			<span class="ss-choice-label"><iframe width="80%" height="60" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/gen-patton/meet-virginia-train&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></span>
+		</label></li> 
 
-	<li class="ss-choice-item"><label>
-		<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 5" id="group_1162506607_5" role="radio" class="ss-q-radio" aria-label="Option 5" required="" aria-required="true"></span>
+		<li class="ss-choice-item"><label>
+			<span class="ss-choice-item-control goog-inline-block"><input type="radio" name="entry.1162506607" value="Option 5" id="group_1162506607_5" role="radio" class="ss-q-radio" aria-label="Option 5" required="" aria-required="true"></span>
 		
-		<span class="ss-choice-label">Option 5</span>
-	</label></li>
-</ul>
+			<span class="ss-choice-label"><iframe width="80%" height="60" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/trainofficial/03-drops-of-jupiter&amp;color=be0606&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe></span>
+		</label></li>
+	</ul>
 
 
-<div class="required-message">Please pick a song</div>
-</div>
+	<div class="required-message">Please pick a song</div>
+	</div>
 
 
-<input type="hidden" name="draftResponse" value="[,,&quot;-7217397980301597263&quot;]
-">
-<input type="hidden" name="pageHistory" value="0">
+	<input type="hidden" name="draftResponse" value="[,,&quot;-7217397980301597263&quot;]
+	">
+	<input type="hidden" name="pageHistory" value="0">
 
 
-<input type="hidden" name="fbzx" value="-7217397980301597263">
-	<div style="margin:auto; text-align:center;"><input onclick="verify()" type="submit" name="submit" value="Submit" id="ss-submit"></div>
+	<input type="hidden" name="fbzx" value="-7217397980301597263">
+		<div style="margin:auto; text-align:center;"><input onclick="verify()" type="submit" name="submit" value="Submit" id="ss-submit"></div>
 
-</ol></form>
-
-
-<div id="docs-aria-speakable" class="docs-a11y-ariascreenreader-speakable docs-offscreen" aria-live="assertive" role="region" aria-atomic></div>
+	</ol></form>
 
 
-<script type='text/javascript' src='/static/forms/client/js/2255132644-formviewer_prd.js'></script>
-<script type="text/javascript">H5F.setup(document.getElementById('ss-form'));
-          _initFormViewer(
-            "[100,,[]\n]\n");</script>
-            
             
 </div>
-</div>
+
 </body>
 
 
