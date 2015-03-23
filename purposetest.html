@@ -1,19 +1,10 @@
 <!--<script src="/js/purpose.min.js"></script>-->
 <script src="http://action-blocks.purpose.com/v0.18.0/purpose.min.js"></script>
+<script src="http://dqk9frulcisr8.cloudfront.net/0E80790A-8B4B-4508-9A5C-AE82A59A59ED/polio-petition-movement-app.js"></script>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
-<script>new Purpose({ apiKey: "globalcitizen-3f3cf72f7154eecff22152fd317f06c5", url: "//api.movements.purpose.com/en" }).attach();
 
-
-
-</script>
-
-<script>
-	function add_id(){
-		var country = document.getElementsByName('country');
-		country.selected="us";
-	}
-</script>
 
     <link href="http://action-blocks.purpose.com/v0.18.0/purpose.min.css" rel="stylesheet">
 
@@ -27,7 +18,7 @@
 	}
 	
 	#everything{
-		background-image:url("http://www.globalpovertyproject.com/wp-content/uploads/2015/02/9140556495_0554ab02f0_k.jpg");	
+		background-image:url("http://dqk9frulcisr8.cloudfront.net/0E80790A-8B4B-4508-9A5C-AE82A59A59ED/533a2988-f79d-4bb1-a7a1-877d120951d2.jpg");	
 
 		background-size:cover;
  		background-repeat:no-repeat;
@@ -37,18 +28,30 @@
  		bottom:0px;
 
 	}
+	
+	::-webkit-scrollbar{
+ 		display:none;
+	} 
+
+	::-webkit-scrollbar-thumb{
+  		display:none;
+	}
 
 	
 	.prps-widget-title, .prps-top{
 		display:none;
 	}
 	.prps-btn{
-		background-color: #be0606;
+		background-color: #ff0000;
 		color:white;
 		border:none;
 		margin: 0 10px 10px;
 		padding: 8px 12px;
 		width:101%;		
+	}
+	
+	button.prps-btn--block{
+		width:101%;
 	}
 	
 	.prps-bottom{
@@ -97,9 +100,10 @@
 		float:right;
 		width:40%;
 		padding:2%;
-		margin-top:5%;
+		margin-top:7%;
 		margin-right:2%;
 		text-align:left;
+		font-size:1.2em;
 
 	}
 	
@@ -118,9 +122,8 @@
  			background-repeat:no-repeat;
  			background-position: 0px 0px;
  		 	width:100%;
-			overflow: scroll;
- 		 	height:700px;
-
+ 		 	position:relative;
+		
 		}
 		
 		
@@ -128,7 +131,6 @@
 	}
 	
 </style>
-<body onload="add_id()">
 <div id="everything">
 
 	<div style="text-align:center;" id="title_text">
@@ -149,6 +151,5 @@
 		<br /></p>
 	
 	</div>
-
-</div>
+<br />
 </div>
