@@ -74,7 +74,7 @@ d3.tsv("data2.tsv", type, function(error, data2) {
       .attr("x", function(d) { return x(d.name); })
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
-      .attr("width", x.rangeBand());
+      .attr("width", x.rangeBand())
       .text(function(d) { return d.value; });
 });
 
