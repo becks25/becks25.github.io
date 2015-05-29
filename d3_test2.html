@@ -64,7 +64,7 @@ d3.tsv("data2.tsv", type, function(error, data2) {
       .call(yAxis);
 
   chart.selectAll(".bar")
-      .data2(data2)
+      .data(data2)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.name); })
