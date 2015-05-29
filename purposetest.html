@@ -1,5 +1,5 @@
 <!--<script src="/js/purpose.min.js"></script>-->
-<script src="http://action-blocks.purpose.com/v0.18.0/purpose.min.js"></script>
+<script src="http://action-blocks.purpose.com/v0.20.0/purpose.min.js"></script>
 <script src="http://dqk9frulcisr8.cloudfront.net/0E80790A-8B4B-4508-9A5C-AE82A59A59ED/polio-petition-movement-app.js"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
@@ -23,7 +23,6 @@
 		background-size:cover;
  		background-repeat:no-repeat;
  		color:white;
- 		position:absolute;
  		top:0px;
  		bottom:0px;
 
@@ -74,22 +73,22 @@
 	}
 	
 	#left{
-		float:left;
+		display:inline-block;
 		width:40%;
 		padding:2%;
 	
 	}
 	
-	#title_text, #right, .prps-share{
-	background-color:black;
-		    background: rgb(0, 0, 0) transparent;
-    /* RGBa with 0.6 opacity */
-    background: rgba(0, 0, 0, 0.6);
-    /* For IE 5.5 - 7*/
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-    /* For IE 8*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
-    color:white;
+	#title_text, .content, .prps-share{
+		background-color:black;
+		background: rgb(0, 0, 0) transparent;
+		/* RGBa with 0.6 opacity */
+		background: rgba(0, 0, 0, 0.6);
+		/* For IE 5.5 - 7*/
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+		/* For IE 8*/
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+		color:white;
 	}
 	
 	a{
@@ -97,16 +96,27 @@
 	}
 	
 	#right{
-		float:right;
+		display:inline-block;
 		width:40%;
-		padding:2%;
-		margin-top:7%;
-		margin-right:2%;
+		margin-left:10%;
+		margin-top:2%;
 		text-align:left;
 		font-size:1.2em;
+		vertical-align:top;
 
 	}
-	
+
+	.content{
+		padding:2%;
+
+	}	
+	.logo{
+		width:100px;
+		padding:2%;
+		display:inline-block;
+		margin:auto;
+		text-align:center;
+	}
 
 	@media screen and (max-width: 710px) {
 		#left, #right{
@@ -143,13 +153,29 @@
 	</div>
 
 	<div id="right">
+		<center>
+			<img src="http://www.globalpovertyproject.com/wp-content/uploads/2015/03/GC_LogoFinal_white.png" class="logo"/>
+			<img src="http://www.globalpovertyproject.com/wp-content/uploads/2015/03/edn-logo-white.png" class="logo"/>
+			
+			<p><a href="globalcitizen.org/2015earthday">2015 Earth Day</a></p>
+		</center>
+		<div class="content">
+			<p>
+		Right now, we have a unique opportunity to use the power of vaccines to wipe out Polio for good. Eliminating Polio would be incredible achievement, and it would mean that no child would ever have to suffer from this debilitating disease again.  
+		<br /><br /><p>
 		<p>
-	Right now, we have a unique opportunity to use the power of vaccines to wipe out Polio for good. Eliminating Polio would be incredible achievement, and it would mean that no child would ever have to suffer from this debilitating disease again.  
-	<br /><br /><p>
-	<p>
-	We're 99% of the way there, but the funding gap and unfulfilled pledges are threatening the progress that has already been made. We need to stand together for the final push: sign the petition to call on leaders to make good on their commitments and create a brighter tomorrow for all the world’s children.
-		<br /></p>
+		We're 99% of the way there, but the funding gap and unfulfilled pledges are threatening the progress that has already been made. We need to stand together for the final push: sign the petition to call on leaders to make good on their commitments and create a brighter tomorrow for all the world’s children.
+			<br /></p>
+		</div>
+	</div>
 	
+	<div style="clear:both; margin-top:5%;" class="content">
+		<h3>More content down here</h3><br/ >
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis viverra quam, ac efficitur nisi. Duis accumsan pellentesque porta. Sed sit amet varius orci. Proin ac purus justo. Donec id posuere sapien. Nulla vitae mi lacus. Curabitur ut risus congue, congue dui at, semper nisi. Nam elementum dolor quis nibh dapibus iaculis.
+<br /><br /></p>
+<p>
+Ut at egestas quam. Aenean quis bibendum libero, ut tincidunt quam. Curabitur eu efficitur mi. Cras eleifend faucibus eleifend. Vivamus quis molestie tellus. Mauris facilisis finibus libero quis accumsan. Nam varius odio vitae sapien ornare blandit.
+</p>
 	</div>
 <br />
 </div>
